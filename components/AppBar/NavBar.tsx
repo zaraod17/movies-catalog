@@ -1,10 +1,10 @@
-import { Typography, Button } from "@mui/material";
-
+import { Typography } from "@mui/material";
 import {
   StyledNavBarWrapper,
   StyledAppBar,
   StyledToolbar,
-  StyledButton
+  StyledButton,
+  StyledLink
 } from "./NavBar.styled";
 
 const NavBar: React.FC = () => {
@@ -14,7 +14,7 @@ const NavBar: React.FC = () => {
         <StyledAppBar>
           <StyledToolbar>
             <Typography variant="h6" component="div">
-              MoviesCatalog
+              <StyledLink href="/">MoviesCatalog</StyledLink>
             </Typography>
             <StyledButton>Login</StyledButton>
           </StyledToolbar>
