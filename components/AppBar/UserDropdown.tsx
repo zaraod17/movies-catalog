@@ -12,7 +12,7 @@ interface UserMenuProps {
   onLogout: () => void;
 }
 
-const UserMenu: React.FC<UserMenuProps> = ({ onLogout }) => {
+const UserDropdown: React.FC<UserMenuProps> = ({ onLogout }) => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>): void => {
@@ -54,4 +54,4 @@ const UserMenu: React.FC<UserMenuProps> = ({ onLogout }) => {
   );
 };
 
-export default UserMenu;
+export default UserDropdown;
