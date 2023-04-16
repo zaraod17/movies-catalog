@@ -46,3 +46,9 @@ export const StyledLinks = styled(Box)(() => ({
   marginLeft: '10px'
  }
 }));
+
+export const InputWrapper = styled('div')(() => ({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  width: '100%',
+}));

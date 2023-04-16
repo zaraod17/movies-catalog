@@ -8,9 +8,11 @@ import {
   StyledButton,
   StyledLink,
   StyledLinks,
+  InputWrapper,
 } from "./NavBar.styled";
 
-import UserDropdown from "./UserDropdown";
+import UserDropdown from "./UserDropdown/UserDropdown";
+import SearchField from "../SearchField/SearchField";
 
 const NavBar: React.FC = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -37,6 +39,9 @@ const NavBar: React.FC = () => {
                 <StyledLink href="/">Favorites</StyledLink>
               </Box>
             </StyledLinks>
+            <InputWrapper>
+              <SearchField />
+            </InputWrapper>
             {isLogin ? (
               <UserDropdown onLogout={handleLogout} />
             ) : (
