@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import { Typography, Box } from "@mui/material";
 import {
-  StyledNavBarWrapper,
   StyledAppBar,
   StyledToolbar,
   StyledButton,
@@ -13,6 +12,7 @@ import {
 
 import UserDropdown from "./UserDropdown/UserDropdown";
 import SearchField from "../SearchField/SearchField";
+import MenuDropdown from "./MenuDropdown/MenuDropdown";
 
 const NavBar: React.FC = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -27,29 +27,28 @@ const NavBar: React.FC = () => {
 
   return (
     <>
-      <StyledNavBarWrapper>
-        <StyledAppBar>
-          <StyledToolbar>
-            <StyledLinks>
-              <Typography variant="h6" component="div">
-                <StyledLink href="/">MoviesCatalog</StyledLink>
-              </Typography>
-              <Box className="links">
-                <StyledLink href="/">MyList</StyledLink>
-                <StyledLink href="/">Favorites</StyledLink>
-              </Box>
-            </StyledLinks>
-            <InputWrapper>
-              <SearchField />
-            </InputWrapper>
-            {isLogin ? (
-              <UserDropdown onLogout={handleLogout} />
-            ) : (
-              <StyledButton onClick={handleLogin}>Login</StyledButton>
-            )}
-          </StyledToolbar>
-        </StyledAppBar>
-      </StyledNavBarWrapper>
+      <StyledAppBar>
+        <StyledToolbar>
+          <MenuDropdown/>
+          <StyledLinks>
+            <Typography variant="h6" component="div">
+              <StyledLink href="/">MoviesCatalog</StyledLink>
+            </Typography>
+            <Box className="links">
+              <StyledLink href="/">MyList</StyledLink>
+              <StyledLink href="/">Favorites</StyledLink>
+            </Box>
+          </StyledLinks>
+          <InputWrapper>
+            <SearchField />
+          </InputWrapper>
+          {isLogin ? (
+            <UserDropdown onLogout={handleLogout} />
+          ) : (
+            <StyledButton onClick={handleLogin}>Login</StyledButton>
+          )}
+        </StyledToolbar>
+      </StyledAppBar>
     </>
   );
 };
