@@ -38,11 +38,28 @@ export const StyledLink = styled(Link)({
   },
 });
 
-export const StyledLinks = styled(Box)(() => ({
+export const StyledLinks = styled(Box)(({ theme }) => ({
   display: "flex",
-  alignItems: 'center',
+  alignItems: "center",
 
- '& .links': {
-  marginLeft: '10px'
- }
+  "& .links": {
+    marginLeft: "10px",
+  },
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
+}));
+
+export const InputWrapper = styled("div")(() => ({
+  display: "flex",
+  justifyContent: "flex-start",
+  width: "100%",
+}));
+
+export const StyledMenu = styled(Box)(({ theme }) => ({
+  flexGrow: 1,
+  display: "flex",
+  [theme.breakpoints.up("sm")]: {
+    display: "none",
+  },
 }));
