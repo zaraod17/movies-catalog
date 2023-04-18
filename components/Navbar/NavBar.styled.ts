@@ -59,7 +59,7 @@ export const InputWrapper = styled("div")(() => ({
 export const StyledMenu = styled(Box)(({ theme }) => ({
   flexGrow: 1,
   display: "flex",
-  [theme.breakpoints.up("sm")]: {
+  [theme.breakpoints.up("md")]: {
     display: "none",
   },
 }));

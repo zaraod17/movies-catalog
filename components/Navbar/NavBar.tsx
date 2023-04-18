@@ -35,8 +35,8 @@ const NavBar: React.FC = () => {
               <StyledLink href="/">MoviesCatalog</StyledLink>
             </Typography>
             <Box className="links">
-              <StyledLink href="/">MyList</StyledLink>
-              <StyledLink href="/">Favorites</StyledLink>
+              <StyledLink href="/watchlist">MyList</StyledLink>
+              <StyledLink href="/favorites">Favorites</StyledLink>
             </Box>
           </StyledLinks>
           <InputWrapper>

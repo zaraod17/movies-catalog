@@ -1,11 +1,16 @@
 import { useState } from "react";
+import Link from "next/link";
 
 import { IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { StyledMenu } from "../NavBar.styled";
 
-const pages: string[] = ["MoviesCatalog", "MyList", "Favorites"];
+const pages: { title: string; page: string }[] = [
+  { title: "MoviesCatalog", page: "/" },
+  { title: "MyList", page: "/watchlist" },
+  { title: "Favorites", page: "/favorites" },
+];
 
 const MenuDropdown: React.FC = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -42,8 +47,10 @@ const MenuDropdown: React.FC = () => {
         onClose={closeNavMenu}
       >
         {pages.map((page) => (
-          <MenuItem key={page} onClick={closeNavMenu}>
-            <Typography textAlign="center">{page}</Typography>
+          <MenuItem key={page.title} onClick={closeNavMenu}>
+            <Link href={page.page}>
+              <Typography textAlign="center">{page.title}</Typography>
+            </Link>
           </MenuItem>
         ))}
       </Menu>
