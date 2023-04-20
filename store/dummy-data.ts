@@ -1,14 +1,6 @@
-type Movies = {
-  id: string | number;
-  title: string;
-  imgUrl: string;
-  productionYear: number;
-  numberOfRatings: number;
-  sumOfRatings: number;
-  description: string;
-  trailerUrl: string;
-  actors: string[];
-}[];
+import { MoviesListElementProps } from "@/components/MoviesList/MoviesListElement/MoviesListElement.types";
+
+type Movies = MoviesListElementProps[];
 
 export const DUMMY_MOVIES: Movies = [
   {
