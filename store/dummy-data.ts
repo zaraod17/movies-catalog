@@ -19,6 +19,7 @@ export const DUMMY_MOVIES: Movies = [
       "Bob Gunton",
       "William Sadler",
     ],
+    categories: ["drama", "crime"],
   },
   {
     id: 2,
@@ -38,6 +39,7 @@ export const DUMMY_MOVIES: Movies = [
       "Richard S. Castellano",
       "Robert Duvall",
     ],
+    categories: ["drama", "crime"],
   },
   {
     id: 3,
@@ -57,6 +59,7 @@ export const DUMMY_MOVIES: Movies = [
       "Harvey Keitel",
       "Tim Roth",
     ],
+    categories: ["crime", "thriller"],
   },
   {
     id: 4,
@@ -76,6 +79,7 @@ export const DUMMY_MOVIES: Movies = [
       "Michael Caine",
       "Maggie Gyllenhaal",
     ],
+    categories: ["action", "crime", "drama"],
   },
   {
     id: 5,
@@ -95,6 +99,7 @@ export const DUMMY_MOVIES: Movies = [
       "Sally Field",
       "Haley Joel Osment",
     ],
+    categories: ["drama", "romance", "comedy"],
   },
   {
     id: 6,
@@ -114,6 +119,7 @@ export const DUMMY_MOVIES: Movies = [
       "Billy Dee Williams",
       "Anthony Daniels",
     ],
+    categories: ["action", "adventure", "sf"],
   },
   {
     id: 7,
@@ -132,6 +138,7 @@ export const DUMMY_MOVIES: Movies = [
       "Bob Gunton",
       "William Sadler",
     ],
+    categories: ["drama", "crime"],
   },
   {
     id: 8,
@@ -151,6 +158,7 @@ export const DUMMY_MOVIES: Movies = [
       "Hugo Weaving",
       "Gloria Foster",
     ],
+    categories: ["sf", "action", "thriller"],
   },
   {
     id: 9,
@@ -170,6 +178,7 @@ export const DUMMY_MOVIES: Movies = [
       "Tom Hardy",
       "Ken Watanabe",
     ],
+    categories: ["action", "thriller"],
   },
   {
     id: 10,
@@ -189,5 +198,6 @@ export const DUMMY_MOVIES: Movies = [
       "Sean Astin",
       "Orlando Bloom",
     ],
+    categories: ["action", "fantasy", "adventure"],
   },
 ];

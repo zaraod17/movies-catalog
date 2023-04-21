@@ -8,4 +8,5 @@ export interface MoviesListElementProps {
     description: string;
     trailerUrl: string;
     actors: string[];
+    categories: string[];
   }
