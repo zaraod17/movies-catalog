@@ -1,9 +1,11 @@
-import { styled, ListItem, Box, Typography } from "@mui/material";
+import { styled, ListItem, Box } from "@mui/material";
 
 export const StyledListItem = styled(ListItem)(({ theme }) => ({
   padding: 0,
   marginBlock: "1rem",
   backgroundColor: theme.palette.grey[400],
+  maxHeight: "100px",
+  transition: "max-height 0.3s ease",
 
   "& .MuiButtonBase-root": {
     padding: 0,
@@ -23,21 +25,20 @@ export const StyledListItem = styled(ListItem)(({ theme }) => ({
   },
 
   "& .movie-description": {
-    display: "none",
+    maxHeight: 0,
+    overflow: "hidden",
+    transition: "max-height 0.3s ease",
   },
 
   "&:hover": {
     backgroundColor: theme.palette.primary.dark,
     color: "white",
-    // transition: 'height 0.3s ease', // TODO: It should animate height
-    // minHeight: '200px',
-
+    maxHeight: "200px",
     "& .MuiTypography-root, p": {
       color: "white",
     },
-
     "& .movie-description": {
-      display: "inline",
+      maxHeight: "1000px",
     },
   },
 }));
@@ -49,7 +50,6 @@ export const StyledImg = styled("img")(({ theme }) => ({
 
 export const MovieInfo = styled(Box)(({ theme }) => ({
   display: "flex",
-
   p: {
     marginInline: "5px",
     marginBlock: 0,
