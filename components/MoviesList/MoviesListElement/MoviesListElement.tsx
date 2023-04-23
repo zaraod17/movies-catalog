@@ -1,9 +1,10 @@
-import { ListItemButton, ListItemText, Typography } from "@mui/material";
+import { ListItemButton, ListItemText, Typography, Box } from "@mui/material";
 
 import {
   StyledListItem,
   StyledImg,
   MovieInfo,
+  ImageWrapper
 } from "./MoviesListElement.styled";
 import { MoviesListElementProps } from "./MoviesListElement.types";
 
@@ -17,7 +18,9 @@ const MoviesListElement: React.FC<MoviesListElementProps> = ({
   return (
     <StyledListItem>
       <ListItemButton>
-        <StyledImg src={imgUrl} />
+        <ImageWrapper>
+          <StyledImg src={imgUrl} />
+        </ImageWrapper>
         <ListItemText
           primary={title}
           secondary={
@@ -30,7 +33,11 @@ const MoviesListElement: React.FC<MoviesListElementProps> = ({
                   </Typography>
                 ))}
               </MovieInfo>
-              <Typography className="movie-description" component="div" variant="body2">
+              <Typography
+                className="movie-description"
+                component="div"
+                variant="body2"
+              >
                 {description}
               </Typography>
             </Typography>

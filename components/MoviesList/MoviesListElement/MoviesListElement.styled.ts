@@ -5,10 +5,11 @@ export const StyledListItem = styled(ListItem)(({ theme }) => ({
   marginBlock: "1rem",
   backgroundColor: theme.palette.grey[400],
   maxHeight: "100px",
-  transition: "max-height 0.3s ease",
+  transition: "all 0.3s ease",
 
   "& .MuiButtonBase-root": {
     padding: 0,
+    height: "inherit",
   },
 
   "& .MuiListItemText-root": {
@@ -27,7 +28,7 @@ export const StyledListItem = styled(ListItem)(({ theme }) => ({
   "& .movie-description": {
     maxHeight: 0,
     overflow: "hidden",
-    transition: "max-height 0.3s ease",
+    transition: "all 0.3s ease",
   },
 
   "&:hover": {
@@ -43,12 +44,19 @@ export const StyledListItem = styled(ListItem)(({ theme }) => ({
   },
 }));
 
-export const StyledImg = styled("img")(({ theme }) => ({
+export const ImageWrapper = styled(Box)(() => ({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-start",
+  height: "100%",
+}));
+
+export const StyledImg = styled("img")(() => ({
   width: "100px",
   height: "100px",
 }));
 
-export const MovieInfo = styled(Box)(({ theme }) => ({
+export const MovieInfo = styled(Box)(() => ({
   display: "flex",
   p: {
     marginInline: "5px",
