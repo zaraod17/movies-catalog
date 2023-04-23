@@ -4,7 +4,7 @@ import {
   StyledListItem,
   StyledImg,
   MovieInfo,
-  ImageWrapper
+  ImageWrapper,
 } from "./MoviesListElement.styled";
 import { MoviesListElementProps } from "./MoviesListElement.types";
 

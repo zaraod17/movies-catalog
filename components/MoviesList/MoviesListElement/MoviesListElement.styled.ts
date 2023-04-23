@@ -3,57 +3,56 @@ import { styled, ListItem, Box } from "@mui/material";
 export const StyledListItem = styled(ListItem)(({ theme }) => ({
   padding: 0,
   marginBlock: "1rem",
-  backgroundColor: theme.palette.grey[400],
-  maxHeight: "100px",
-  transition: "all 0.3s ease",
 
-  "& .MuiButtonBase-root": {
+  "& .MuiListItemButton-root": {
     padding: 0,
-    height: "inherit",
-  },
-
-  "& .MuiListItemText-root": {
-    paddingInline: "2rem",
-    marginInline: 0,
-
-    "p, span": {
-      color: "black",
-    },
-  },
-
-  "& .MuiListItemText-primary": {
-    fontWeight: 700,
-  },
-
-  "& .movie-description": {
-    maxHeight: 0,
-    overflow: "hidden",
+    backgroundColor: theme.palette.grey[400],
+    minHeight: "90px",
     transition: "all 0.3s ease",
-  },
+    position: "relative",
 
-  "&:hover": {
-    backgroundColor: theme.palette.primary.dark,
-    color: "white",
-    maxHeight: "200px",
-    "& .MuiTypography-root, p": {
+    "&:hover": {
+      backgroundColor: theme.palette.primary.dark,
       color: "white",
+      maxHeight: "200px",
+      "& .MuiTypography-root, p": {
+        color: "white",
+      },
+      "& .movie-description": {
+        maxHeight: "100px",
+      },
     },
+
+    "& .MuiListItemText-root": {
+      paddingInline: "2rem",
+      marginRight: 0,
+      marginLeft: '100px',
+
+      "p, span": {
+        color: "black",
+      },
+    },
+
+    "& .MuiListItemText-primary": {
+      fontWeight: 700,
+    },
+
     "& .movie-description": {
-      maxHeight: "1000px",
+      maxHeight: 0,
+      overflow: "hidden",
+      transition: "all 0.3s ease",
     },
   },
 }));
 
 export const ImageWrapper = styled(Box)(() => ({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "flex-start",
+  position: "absolute",
   height: "100%",
 }));
 
 export const StyledImg = styled("img")(() => ({
   width: "100px",
-  height: "100px",
+  height: "90px",
 }));
 
 export const MovieInfo = styled(Box)(() => ({
