@@ -21,12 +21,16 @@ export const StyledListItem = styled(ListItem)(({ theme }) => ({
       "& .movie-description": {
         maxHeight: "100px",
       },
+
+      "& .rate-icon-wrapper": {
+        maxHeight: "50px",
+      },
     },
 
     "& .MuiListItemText-root": {
       paddingInline: "2rem",
       marginRight: 0,
-      marginLeft: '100px',
+      marginLeft: "100px",
 
       "p, span": {
         color: "black",
@@ -48,6 +52,8 @@ export const StyledListItem = styled(ListItem)(({ theme }) => ({
 export const ImageWrapper = styled(Box)(() => ({
   position: "absolute",
   height: "100%",
+  display: "flex",
+  flexDirection: "column",
 }));
 
 export const StyledImg = styled("img")(() => ({
@@ -60,5 +66,18 @@ export const MovieInfo = styled(Box)(() => ({
   p: {
     marginInline: "5px",
     marginBlock: 0,
+  },
+}));
+
+export const RateIconWrapper = styled(Box)(() => ({
+  maxHeight: 0,
+  overflow: "hidden",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+
+  svg: {
+    marginRight: "10px",
+    paddingBlock: "1rem",
   },
 }));

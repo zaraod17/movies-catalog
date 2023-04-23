@@ -1,10 +1,12 @@
-import { ListItemButton, ListItemText, Typography, Box } from "@mui/material";
+import { ListItemButton, ListItemText, Typography } from "@mui/material";
+import StarRateIcon from "@mui/icons-material/StarRate";
 
 import {
   StyledListItem,
   StyledImg,
   MovieInfo,
   ImageWrapper,
+  RateIconWrapper,
 } from "./MoviesListElement.styled";
 import { MoviesListElementProps } from "./MoviesListElement.types";
 
@@ -14,12 +16,22 @@ const MoviesListElement: React.FC<MoviesListElementProps> = ({
   categories,
   productionYear,
   description,
+  numberOfRatings,
+  sumOfRatings,
 }) => {
+  const rating: number = sumOfRatings / numberOfRatings;
+
   return (
     <StyledListItem>
       <ListItemButton>
         <ImageWrapper>
           <StyledImg src={imgUrl} />
+          <RateIconWrapper className="rate-icon-wrapper">
+            <StarRateIcon></StarRateIcon>
+            <Typography component="div" variant="body2">
+              {rating}
+            </Typography>
+          </RateIconWrapper>
         </ImageWrapper>
         <ListItemText
           primary={title}
