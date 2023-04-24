@@ -1,10 +1,11 @@
-import MoviesList from '@/components/MoviesList/MoviesList';
+import MoviesList from "@/components/MoviesList/MoviesList";
+
+import MainPageLists from "@/components/MainPageLists/MainPageLists";
 
 const Home: React.FC = () => {
   return (
     <>
-      <h1>Home page</h1>
-      <MoviesList></MoviesList>
+      <MainPageLists />
     </>
   );
 };

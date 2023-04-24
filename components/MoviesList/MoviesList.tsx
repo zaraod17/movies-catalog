@@ -5,11 +5,11 @@ import MoviesListElement from "./MoviesListElement/MoviesListElement";
 
 import { DUMMY_MOVIES } from "@/store/dummy-data";
 
-const MoviesList: React.FC = () => {
+const MoviesList: React.FC<{ listTitle: string }> = ({ listTitle }) => {
   return (
     <StyledListWrapper>
       <Typography variant="h6" component="div">
-        Popular movies
+        {listTitle}
       </Typography>
       <List>
         {DUMMY_MOVIES.map((movie) => (
