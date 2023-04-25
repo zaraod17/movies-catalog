@@ -38,7 +38,9 @@ const MoviesListElement: React.FC<MoviesListElementProps> = ({
           secondary={
             <Typography component="div" variant="body2">
               <MovieInfo>
-                {productionYear} {"|"}
+                <Typography component="span" variant="body2">
+                  {productionYear} {"|"}
+                </Typography>
                 {categories.map((category) => (
                   <Typography component="p" variant="caption" key={category}>
                     {category.toUpperCase()}

@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 import { List, Typography } from "@mui/material";
 
-import { StyledListWrapper } from "./MoviesList.styled";
+import { StyledListWrapper, StyledLink } from "./MoviesList.styled";
 import MoviesListElement from "./MoviesListElement/MoviesListElement";
 
 import { DUMMY_MOVIES } from "@/store/dummy-data";
@@ -13,7 +15,9 @@ const MoviesList: React.FC<{ listTitle: string }> = ({ listTitle }) => {
       </Typography>
       <List>
         {DUMMY_MOVIES.map((movie) => (
-          <MoviesListElement key={movie.id} {...movie} />
+          <StyledLink key={movie.id} href={`/movie-details/${movie.id}`}>
+            <MoviesListElement {...movie} />
+          </StyledLink>
         ))}
       </List>
     </StyledListWrapper>
