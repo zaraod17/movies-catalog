@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { Box, CircularProgress } from "@mui/material";
+import { CircularProgress, Typography, Box } from "@mui/material";
+import { StyledWrapper, StyledImg, StyledBox } from "./MovieDetails.styled";
 
 import { MoviesListElementProps } from "@/components/MoviesList/MoviesListElement/MoviesListElement.types";
 import { DUMMY_MOVIES } from "@/store/dummy-data";
@@ -13,13 +14,24 @@ const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
     setSelectedMovie(movie!);
   }, [id]);
 
-  console.log(typeof id);
+  if (!selectedMovie) {
+    return <CircularProgress />;
+  }
 
   return (
-    <>
-      {!selectedMovie && <CircularProgress />}
-      {selectedMovie && <Box>{selectedMovie!.title}</Box>}
-    </>
+    <StyledBox>
+      <StyledWrapper>
+        <StyledImg src={selectedMovie.imgUrl}></StyledImg>
+        <Box>
+          <Typography component="div" variant="h5" color="initial">
+            {selectedMovie.title}
+          </Typography>
+          <Typography component="div" variant="caption">
+            {selectedMovie.description}
+          </Typography>
+        </Box>
+      </StyledWrapper>
+    </StyledBox>
   );
 };
 
