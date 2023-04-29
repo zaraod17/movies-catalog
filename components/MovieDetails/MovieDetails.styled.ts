@@ -1,4 +1,4 @@
-import { styled, Box, Typography } from "@mui/material";
+import { styled, Box, Typography, List } from "@mui/material";
 
 export const StyledBox = styled(Box)(() => ({
   width: "100%",
@@ -55,6 +55,19 @@ export const StyledInfo = styled(Typography)(() => ({
       color: "white",
       backgroundColor: "gray",
       borderRadius: "1rem",
+    },
+  },
+}));
+
+export const ActorsList = styled(List)(({ theme }) => ({
+  div: {
+    borderRadius: "0.5rem",
+  },
+
+  li: {
+    "&:hover": {
+      backgroundColor: theme.palette.grey[600],
+      color: "white",
     },
   },
 }));

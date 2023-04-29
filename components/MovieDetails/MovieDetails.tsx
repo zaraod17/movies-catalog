@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 
-import { CircularProgress, Typography, Box } from "@mui/material";
+import {
+  CircularProgress,
+  Typography,
+  Box,
+  ListSubheader,
+  ListItem,
+} from "@mui/material";
 import {
   StyledWrapper,
   StyledImg,
   StyledBox,
   StyledInfo,
+  ActorsList,
 } from "./MovieDetails.styled";
 
 import { MoviesListElementProps } from "@/components/MoviesList/MoviesListElement/MoviesListElement.types";
@@ -31,7 +38,7 @@ const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
           <Typography component="div" variant="h5" color="initial">
             {selectedMovie.title}
           </Typography>
-          <StyledInfo >
+          <StyledInfo>
             <Typography component="span" variant="subtitle2">
               {selectedMovie.productionYear} {"|"}
             </Typography>
@@ -46,7 +53,19 @@ const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
           </Typography>
         </Box>
       </StyledWrapper>
-      <StyledWrapper className="actors-list">List of actors</StyledWrapper>
+      <StyledWrapper className="actors-list">
+        <ActorsList
+          subheader={
+            <ListSubheader component="div" id="nestet-list-subheader">
+              Movie actors
+            </ListSubheader>
+          }
+        >
+          {selectedMovie.actors.map((actor) => (
+            <ListItem key={actor}>{actor}</ListItem>
+          ))}
+        </ActorsList>
+      </StyledWrapper>
     </StyledBox>
   );
 };

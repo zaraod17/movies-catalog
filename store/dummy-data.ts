@@ -15,7 +15,9 @@ export const DUMMY_MOVIES: Movies = [
       "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
     trailerUrl: "https://youtube.com/watch?v=6hB3S9bIaco",
     actors: [
-      "Morgan Freeman, Tim Robins, Clancy Brown",
+      "Morgan Freeman",
+      "Tim Robins",
+      "Clancy Brown",
       "Bob Gunton",
       "William Sadler",
     ],
