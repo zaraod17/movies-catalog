@@ -13,6 +13,7 @@ import {
   StyledBox,
   StyledInfo,
   ActorsList,
+  MovieTrailerWrapper,
 } from "./MovieDetails.styled";
 
 import { MoviesListElementProps } from "@/components/MoviesList/MoviesListElement/MoviesListElement.types";
@@ -31,42 +32,51 @@ const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
   }
 
   return (
-    <StyledBox>
-      <StyledWrapper className="movie-info">
-        <StyledImg src={selectedMovie.imgUrl}></StyledImg>
-        <Box>
-          <Typography component="div" variant="h5" color="initial">
-            {selectedMovie.title}
-          </Typography>
-          <StyledInfo>
-            <Typography component="span" variant="subtitle2">
-              {selectedMovie.productionYear} {"|"}
+    <>
+      <StyledBox>
+        <StyledWrapper className="movie-info">
+          <StyledImg src={selectedMovie.imgUrl}></StyledImg>
+          <Box>
+            <Typography component="div" variant="h5" color="initial">
+              {selectedMovie.title}
             </Typography>
-            {selectedMovie.categories.map((category) => (
-              <Typography component="p" variant="caption" key={category}>
-                {category.toUpperCase()}
+            <StyledInfo>
+              <Typography component="span" variant="subtitle2">
+                {selectedMovie.productionYear} {"|"}
               </Typography>
+              {selectedMovie.categories.map((category) => (
+                <Typography component="p" variant="caption" key={category}>
+                  {category.toUpperCase()}
+                </Typography>
+              ))}
+            </StyledInfo>
+            <Typography
+              className="description"
+              component="div"
+              variant="caption"
+            >
+              {selectedMovie.description}
+            </Typography>
+          </Box>
+        </StyledWrapper>
+        <StyledWrapper className="actors-list">
+          <ActorsList
+            subheader={
+              <ListSubheader component="div" id="nestet-list-subheader">
+                Movie actors
+              </ListSubheader>
+            }
+          >
+            {selectedMovie.actors.map((actor) => (
+              <ListItem key={actor}>{actor}</ListItem>
             ))}
-          </StyledInfo>
-          <Typography className="description" component="div" variant="caption">
-            {selectedMovie.description}
-          </Typography>
-        </Box>
-      </StyledWrapper>
-      <StyledWrapper className="actors-list">
-        <ActorsList
-          subheader={
-            <ListSubheader component="div" id="nestet-list-subheader">
-              Movie actors
-            </ListSubheader>
-          }
-        >
-          {selectedMovie.actors.map((actor) => (
-            <ListItem key={actor}>{actor}</ListItem>
-          ))}
-        </ActorsList>
-      </StyledWrapper>
-    </StyledBox>
+          </ActorsList>
+        </StyledWrapper>
+      </StyledBox>
+      <MovieTrailerWrapper>
+        <StyledWrapper>MOVIE TRAILER HERE</StyledWrapper>
+      </MovieTrailerWrapper>
+    </>
   );
 };
 

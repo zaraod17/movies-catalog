@@ -1,11 +1,16 @@
 import { styled, Box, Typography, List } from "@mui/material";
 
+const wrapperStyles = {
+  backgroundColor: "white",
+  borderRadius: ".5rem",
+  boxShadow: "2px 2px 11px #888888",
+};
+
 export const StyledBox = styled(Box)(() => ({
   width: "100%",
   display: "flex",
   justifyContent: "center",
   paddingBlock: "5rem",
-  paddingInline: "3rem",
 
   ".actors-list": {
     marginLeft: "2rem",
@@ -13,10 +18,8 @@ export const StyledBox = styled(Box)(() => ({
 }));
 
 export const StyledWrapper = styled(Box)(() => ({
-  backgroundColor: "white",
-  borderRadius: ".5rem",
+  ...wrapperStyles,
   maxWidth: "800px",
-  boxShadow: "2px 2px 11px #888888",
   display: "flex",
 
   ".MuiBox-root": {
@@ -35,7 +38,7 @@ export const StyledWrapper = styled(Box)(() => ({
 
 export const StyledImg = styled("img")(() => ({
   height: "100%",
-  maxWidth: '400px',
+  maxWidth: "400px",
   borderRadius: "inherit",
   borderTopRightRadius: 0,
   borderBottomRightRadius: 0,
@@ -70,4 +73,9 @@ export const ActorsList = styled(List)(({ theme }) => ({
       color: "white",
     },
   },
+}));
+
+export const MovieTrailerWrapper = styled(Box)(() => ({
+  display: "flex",
+  justifyContent: "center",
 }));
