@@ -35,7 +35,7 @@ export const StyledWrapper = styled(Box)(() => ({
 
 export const StyledImg = styled("img")(() => ({
   height: "100%",
-  objectFit: "contain",
+  maxWidth: '400px',
   borderRadius: "inherit",
   borderTopRightRadius: 0,
   borderBottomRightRadius: 0,
