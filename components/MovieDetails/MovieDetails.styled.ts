@@ -18,6 +18,13 @@ export const StyledBox = styled(Box)(({ theme }) => ({
     [theme.breakpoints.down("md")]: {
       marginTop: "1rem",
       marginLeft: 0,
+      textAlign: "center",
+
+      ul: {
+        li: {
+          justifyContent: "center",
+        },
+      },
     },
 
     ul: {
@@ -55,17 +62,19 @@ export const StyledWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const StyledImg = styled("img")(({theme}) => ({
+export const StyledImg = styled("img")(({ theme }) => ({
   height: "100%",
   maxWidth: "400px",
   borderRadius: "inherit",
   borderTopRightRadius: 0,
   borderBottomRightRadius: 0,
 
-  [theme.breakpoints.down('md')]: {
-    borderTopRightRadius: 'inherit',
-    borderBottomRightRadius: 'inherit',
-  }
+  [theme.breakpoints.down("md")]: {
+    borderTopRightRadius: "inherit",
+    borderBottomRightRadius: "inherit",
+    maxWidth: "100%",
+    maxHeight: "400px",
+  },
 }));
 
 export const StyledInfo = styled(Typography)(() => ({
