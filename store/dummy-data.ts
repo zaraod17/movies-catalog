@@ -13,9 +13,11 @@ export const DUMMY_MOVIES: Movies = [
     sumOfRatings: 7500,
     description:
       "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-    trailerUrl: "https://youtube.com/watch?v=6hB3S9bIaco",
+    trailerUrl: "https://youtube.com/embed/6hB3S9bIaco",
     actors: [
-      "Morgan Freeman, Tim Robins, Clancy Brown",
+      "Morgan Freeman",
+      "Tim Robins",
+      "Clancy Brown",
       "Bob Gunton",
       "William Sadler",
     ],
@@ -31,7 +33,7 @@ export const DUMMY_MOVIES: Movies = [
     sumOfRatings: 9000,
     description:
       "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
-    trailerUrl: "https://youtube.com/watch?v=sY1S34973zA",
+    trailerUrl: "https://youtube.com/embed/sY1S34973zA",
     actors: [
       "Marlon Brando",
       "Al Pacino",
@@ -51,7 +53,7 @@ export const DUMMY_MOVIES: Movies = [
     sumOfRatings: 10500,
     description:
       "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-    trailerUrl: "https://youtube.com/watch?v=s7EdQ4FqbhY",
+    trailerUrl: "https://youtube.com/embed/s7EdQ4FqbhY",
     actors: [
       "John Travolta",
       "Uma Thurman",
@@ -71,7 +73,7 @@ export const DUMMY_MOVIES: Movies = [
     sumOfRatings: 11500,
     description:
       "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
-    trailerUrl: "https://youtube.com/watch?v=kmJLuwP3MbY",
+    trailerUrl: "https://youtube.com/embed/kmJLuwP3MbY",
     actors: [
       "Christian Bale",
       "Heath Ledger",
@@ -91,7 +93,7 @@ export const DUMMY_MOVIES: Movies = [
     sumOfRatings: 9500,
     description:
       "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other history unfold through the perspective of an Alabama man with an IQ of 75.",
-    trailerUrl: "https://youtube.com/watch?v=bLvqoHBptjg",
+    trailerUrl: "https://youtube.com/embed/bLvqoHBptjg",
     actors: [
       "Tom Hanks",
       "Robin Wright",
@@ -111,7 +113,7 @@ export const DUMMY_MOVIES: Movies = [
     sumOfRatings: 8500,
     description:
       "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued by Darth Vader.",
-    trailerUrl: "https://youtube.com/watch?v=JNwNXF9Y6kY",
+    trailerUrl: "https://youtube.com/embed/JNwNXF9Y6kY",
     actors: [
       "Mark Hamill",
       "Harrison Ford",
@@ -132,7 +134,7 @@ export const DUMMY_MOVIES: Movies = [
     sumOfRatings: 15000,
     description:
       "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-    trailerUrl: "https://youtube.com/watch?v=6hB3S9bIaco",
+    trailerUrl: "https://youtube.com/embed/6hB3S9bIaco",
     actors: [
       "Morgan Freeman, Tim Robins, Clancy Brown",
       "Bob Gunton",
@@ -150,7 +152,7 @@ export const DUMMY_MOVIES: Movies = [
     sumOfRatings: 11000,
     description:
       "A computer programmer discovers that his reality is not what it seems, and he joins a group of rebels to fight against the machines that control humanity.",
-    trailerUrl: "https://youtube.com/watch?v=m8e-FF8MsqU",
+    trailerUrl: "https://youtube.com/embed/m8e-FF8MsqU",
     actors: [
       "Keanu Reeves",
       "Laurence Fishburne",
@@ -170,7 +172,7 @@ export const DUMMY_MOVIES: Movies = [
     sumOfRatings: 12500,
     description:
       "A skilled thief who steals information by infiltrating the subconscious mind is given a chance to have his criminal history erased if he can successfully plant an idea in a target's mind.",
-    trailerUrl: "https://youtube.com/watch?v=YoHD9XEInc0",
+    trailerUrl: "https://youtube.com/embed/YoHD9XEInc0",
     actors: [
       "Leonardo DiCaprio",
       "Joseph Gordon-Levitt",
@@ -190,7 +192,7 @@ export const DUMMY_MOVIES: Movies = [
     sumOfRatings: 10000,
     description:
       "A young hobbit and his companions set out on a journey to destroy a powerful ring and save Middle-earth from the Dark Lord Sauron.",
-    trailerUrl: "https://youtube.com/watch?v=V75dMMIW2B4",
+    trailerUrl: "https://youtube.com/embed/V75dMMIW2B4",
     actors: [
       "Elijah Wood",
       "Ian McKellen",
