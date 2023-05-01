@@ -6,7 +6,7 @@ const wrapperStyles = {
   boxShadow: "2px 2px 11px #888888",
 };
 
-export const StyledBox = styled(Box)(() => ({
+export const StyledBox = styled(Box)(({ theme }) => ({
   width: "100%",
   display: "flex",
   justifyContent: "center",
@@ -14,10 +14,24 @@ export const StyledBox = styled(Box)(() => ({
 
   ".actors-list": {
     marginLeft: "2rem",
+
+    [theme.breakpoints.down("md")]: {
+      marginTop: "1rem",
+      marginLeft: 0,
+    },
+
+    ul: {
+      listStyleType: "",
+    },
+  },
+
+  [theme.breakpoints.down("md")]: {
+    display: "flex",
+    flexDirection: "column",
   },
 }));
 
-export const StyledWrapper = styled(Box)(() => ({
+export const StyledWrapper = styled(Box)(({ theme }) => ({
   ...wrapperStyles,
   maxWidth: "800px",
   display: "flex",
@@ -34,14 +48,24 @@ export const StyledWrapper = styled(Box)(() => ({
       marginTop: "1rem",
     },
   },
+
+  [theme.breakpoints.down("md")]: {
+    display: "flex",
+    flexDirection: "column",
+  },
 }));
 
-export const StyledImg = styled("img")(() => ({
+export const StyledImg = styled("img")(({theme}) => ({
   height: "100%",
   maxWidth: "400px",
   borderRadius: "inherit",
   borderTopRightRadius: 0,
   borderBottomRightRadius: 0,
+
+  [theme.breakpoints.down('md')]: {
+    borderTopRightRadius: 'inherit',
+    borderBottomRightRadius: 'inherit',
+  }
 }));
 
 export const StyledInfo = styled(Typography)(() => ({
@@ -78,4 +102,16 @@ export const ActorsList = styled(List)(({ theme }) => ({
 export const MovieTrailerWrapper = styled(Box)(() => ({
   display: "flex",
   justifyContent: "center",
+}));
+
+export const StyledFrame = styled("iframe")(({ theme }) => ({
+  minWidth: "70%",
+  minHeight: "400px",
+  border: "none",
+  borderRadius: "1rem",
+
+  [theme.breakpoints.down("md")]: {
+    minWidth: "90%",
+    minHeight: "300px",
+  },
 }));

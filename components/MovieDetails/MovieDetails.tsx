@@ -14,6 +14,7 @@ import {
   StyledInfo,
   ActorsList,
   MovieTrailerWrapper,
+  StyledFrame,
 } from "./MovieDetails.styled";
 
 import { MoviesListElementProps } from "@/components/MoviesList/MoviesListElement/MoviesListElement.types";
@@ -68,13 +69,13 @@ const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
             }
           >
             {selectedMovie.actors.map((actor) => (
-              <ListItem key={actor}>{actor}</ListItem>
+              <ListItem key={actor}>* {actor}</ListItem>
             ))}
           </ActorsList>
         </StyledWrapper>
       </StyledBox>
       <MovieTrailerWrapper>
-        <StyledWrapper>MOVIE TRAILER HERE</StyledWrapper>
+        <StyledFrame src={selectedMovie.trailerUrl}></StyledFrame>
       </MovieTrailerWrapper>
     </>
   );
