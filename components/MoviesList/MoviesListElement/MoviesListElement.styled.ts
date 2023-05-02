@@ -25,6 +25,10 @@ export const StyledListItem = styled(ListItem)(({ theme }) => ({
       "& .rate-icon-wrapper": {
         maxHeight: "50px",
       },
+
+      "& .MuiIconButton-root": {
+        color: "white",
+      },
     },
 
     "& .MuiListItemText-root": {
@@ -61,11 +65,16 @@ export const StyledImg = styled("img")(() => ({
   height: "90px",
 }));
 
-export const MovieInfo = styled(Box)(() => ({
+export const MovieInfo = styled(Box)(({ theme }) => ({
   display: "flex",
   p: {
     marginInline: "5px",
     marginBlock: 0,
+    
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    display: "none",
   },
 }));
 

@@ -11,6 +11,10 @@ export const StyledListWrapper = styled(Box)(({ theme }) => ({
   borderRadius: "1rem",
   boxShadow: "2px 2px 11px #888888",
 
+  [theme.breakpoints.down("md")]: {
+    maxWidth: "100%",
+  },
+
   "& .MuiTypography-h6": {
     fontWeight: 600,
     textAlign: "center",
