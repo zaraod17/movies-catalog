@@ -10,6 +10,8 @@ import {
 } from "./MoviesListElement.styled";
 import { MoviesListElementProps } from "./MoviesListElement.types";
 
+import MovieInfoMenu from "./MovieInfoMenu/MovieInfoMenu";
+
 const MoviesListElement: React.FC<MoviesListElementProps> = ({
   imgUrl,
   title,
@@ -47,6 +49,10 @@ const MoviesListElement: React.FC<MoviesListElementProps> = ({
                   </Typography>
                 ))}
               </MovieInfo>
+              <MovieInfoMenu
+                categories={categories}
+                productionYear={productionYear}
+              />
               <Typography
                 className="movie-description"
                 component="div"
