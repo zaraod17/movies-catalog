@@ -13,6 +13,7 @@ import {
 import UserDropdown from "./UserDropdown/UserDropdown";
 import SearchField from "../SearchField/SearchField";
 import MenuDropdown from "./MenuDropdown/MenuDropdown";
+import AuthModal from '@/components/AuthModal/AuthModal';
 
 const NavBar: React.FC = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -42,6 +43,7 @@ const NavBar: React.FC = () => {
           <InputWrapper>
             <SearchField />
           </InputWrapper>
+          <AuthModal />
           {isLogin ? (
             <UserDropdown onLogout={handleLogout} />
           ) : (
