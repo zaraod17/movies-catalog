@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   Button,
   Dialog,
@@ -9,7 +9,7 @@ import {
 
 import { AuthMode } from "./AuthModal.types";
 
-import { StyledFormBox } from "./AuthModal.styled";
+import AuthModalForm from "./AuthModalForm/AuthModalForm";
 
 const dialogContents = {
   login: "Login to your account",
@@ -38,7 +38,7 @@ const AuthModal: React.FC = () => {
           <DialogContentText>
             {isLogin ? dialogContents.login : dialogContents.signup}
           </DialogContentText>
-          <StyledFormBox component="form"></StyledFormBox>
+          <AuthModalForm />
         </DialogContent>
       </Dialog>
       <Button onClick={handleOpenModal} variant="outlined">
