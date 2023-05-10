@@ -7,9 +7,20 @@ import PasswordIcon from "@mui/icons-material/Password";
 
 import { StyledFormBox, StyledInputWrapper } from "../AuthModal.styled";
 
-const AuthModalForm: React.FC = () => {
+const AuthModalForm: React.FC<{ mode: string; onLogin: () => void }> = ({
+  mode,
+  onLogin,
+}) => {
   const login = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
+
+  const isLogin = mode === "login";
+
+  const handleAuthForm = () => {
+    if (isLogin) {
+      onLogin();
+    }
+  };
 
   return (
     <StyledFormBox component="form">
@@ -26,7 +37,9 @@ const AuthModalForm: React.FC = () => {
           type="text"
         />
       </StyledInputWrapper>
-      <Button variant="contained">Login</Button>
+      <Button variant="contained" disableElevation onClick={handleAuthForm}>
+        {isLogin ? "Login" : "Create account"}
+      </Button>
     </StyledFormBox>
   );
 };

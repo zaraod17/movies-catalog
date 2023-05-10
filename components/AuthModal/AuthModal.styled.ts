@@ -1,6 +1,29 @@
-import { styled, Box } from "@mui/material";
+import { styled, Box, Dialog, DialogContent } from "@mui/material";
 
-export const StyledFormBox = styled(Box)(() => ({
+export const StyledDialog = styled(Dialog)(() => ({
+  "& .MuiPaper-root": {
+    minWidth: "300px",
+    minHeight: '350px'
+  },
+}));
+
+export const StyledDialogContent = styled(DialogContent)(() => ({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+
+  span: {
+    marginTop: "1rem",
+
+    "&:hover": {
+      color: "black",
+      cursor: "pointer",
+      textDecoration: "underline",
+    },
+  },
+}));
+
+export const StyledFormBox = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -9,6 +32,11 @@ export const StyledFormBox = styled(Box)(() => ({
     marginTop: "1rem",
     borderRadius: "1rem",
     textTransform: "capitalize",
+    backgroundColor: theme.palette.grey[700],
+
+    "&:hover": {
+      backgroundColor: "black",
+    },
   },
 }));
 

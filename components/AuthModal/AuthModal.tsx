@@ -1,49 +1,64 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import {
   Button,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogContentText,
+  Typography,
 } from "@mui/material";
 
-import { AuthMode } from "./AuthModal.types";
+import { AuthMode, AuthModalProps } from "./AuthModal.types";
+
+import { StyledDialogContent, StyledDialog } from "./AuthModal.styled";
 
 import AuthModalForm from "./AuthModalForm/AuthModalForm";
 
 const dialogContents = {
   login: "Login to your account",
-  signup: "Create an account",
+  signup: "Create new account",
 };
 
-const AuthModal: React.FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
+const AuthModal: React.FC<AuthModalProps> = ({
+  onModalClose,
+  onLogin,
+  modalOpen,
+}) => {
   const [mode, setMode] = useState<AuthMode>("login");
 
   const isLogin = mode === "login";
 
-  const handleOpenModal = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <>
-      <Dialog onClose={handleClose} open={open}>
-        <DialogTitle>{isLogin ? "Login" : "Signup"}</DialogTitle>
-        <DialogContent>
+      <StyledDialog onClose={onModalClose} open={modalOpen}>
+        <DialogTitle sx={{ textAlign: "center" }}>
+          {isLogin ? "Sign in" : "Sign up"}
+        </DialogTitle>
+        <StyledDialogContent>
           <DialogContentText>
             {isLogin ? dialogContents.login : dialogContents.signup}
           </DialogContentText>
-          <AuthModalForm />
-        </DialogContent>
-      </Dialog>
-      <Button onClick={handleOpenModal} variant="outlined">
-        Login
-      </Button>
+          <AuthModalForm mode={mode} onLogin={onLogin} />
+          {mode === "login" && (
+            <Typography
+              onClick={() => setMode("signup")}
+              component="span"
+              variant="caption"
+            >
+              Create an account
+            </Typography>
+          )}
+          {mode === "signup" && (
+            <Typography
+              onClick={() => setMode("login")}
+              component="span"
+              variant="caption"
+            >
+              Log in to your account
+            </Typography>
+          )}
+        </StyledDialogContent>
+      </StyledDialog>
     </>
   );
 };
