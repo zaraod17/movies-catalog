@@ -15,3 +15,5 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+For now data are fetched from dummy-data.ts file. Soon I"m going to create GrapQL API for this.

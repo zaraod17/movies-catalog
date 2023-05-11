@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   Menu,
   Tooltip,
@@ -7,13 +7,12 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
+import { AuthContext } from "@/contexts/AuthContext";
 
-interface UserMenuProps {
-  onLogout: () => void;
-}
-
-const UserDropdown: React.FC<UserMenuProps> = ({ onLogout }) => {
+const UserDropdown: React.FC = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+  const { handleLogin } = useContext(AuthContext);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElUser(event.currentTarget);
@@ -21,8 +20,13 @@ const UserDropdown: React.FC<UserMenuProps> = ({ onLogout }) => {
 
   const handleCloseUserMenu = (): void => {
     setAnchorElUser(null);
-    onLogout();
   };
+
+  const handleLogout = () => {
+    handleLogin(false);
+    setAnchorElUser(null);
+  };
+
   return (
     <>
       <Tooltip title="User Settings">
@@ -46,7 +50,7 @@ const UserDropdown: React.FC<UserMenuProps> = ({ onLogout }) => {
         <MenuItem onClick={handleCloseUserMenu}>
           <Typography textAlign="center">Account</Typography>
         </MenuItem>
-        <MenuItem onClick={handleCloseUserMenu}>
+        <MenuItem onClick={handleLogout}>
           <Typography textAlign="center">Logout </Typography>
         </MenuItem>
       </Menu>

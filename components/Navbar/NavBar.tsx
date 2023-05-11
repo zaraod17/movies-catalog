@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { Typography, Box } from "@mui/material";
 import {
@@ -10,26 +10,29 @@ import {
   InputWrapper,
 } from "./NavBar.styled";
 
+import { AuthContext } from "@/contexts/AuthContext";
+
 import UserDropdown from "./UserDropdown/UserDropdown";
 import SearchField from "../SearchField/SearchField";
 import MenuDropdown from "./MenuDropdown/MenuDropdown";
+import AuthModal from "@/components/AuthModal/AuthModal";
 
 const NavBar: React.FC = () => {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const { login, openModal, handleModal } = useContext(AuthContext);
 
-  const handleLogin = (): void => {
-    setIsLogin(true);
+  const handleOpenModal = () => {
+    handleModal(true);
   };
 
-  const handleLogout = (): void => {
-    setIsLogin(false);
+  const handleClose = () => {
+    handleModal(false);
   };
 
   return (
     <>
       <StyledAppBar>
         <StyledToolbar>
-          <MenuDropdown/>
+          <MenuDropdown />
           <StyledLinks>
             <Typography variant="h6" component="div">
               <StyledLink href="/">MoviesCatalog</StyledLink>
@@ -42,10 +45,11 @@ const NavBar: React.FC = () => {
           <InputWrapper>
             <SearchField />
           </InputWrapper>
-          {isLogin ? (
-            <UserDropdown onLogout={handleLogout} />
+          <AuthModal modalOpen={openModal} onModalClose={handleClose} />
+          {login ? (
+            <UserDropdown />
           ) : (
-            <StyledButton onClick={handleLogin}>Login</StyledButton>
+            <StyledButton onClick={handleOpenModal}>Login</StyledButton>
           )}
         </StyledToolbar>
       </StyledAppBar>
