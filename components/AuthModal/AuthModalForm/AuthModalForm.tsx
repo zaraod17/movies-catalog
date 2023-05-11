@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 
 import { TextField, Button } from "@mui/material";
 
@@ -6,19 +6,20 @@ import PersonIcon from "@mui/icons-material/Person";
 import PasswordIcon from "@mui/icons-material/Password";
 
 import { StyledFormBox, StyledInputWrapper } from "../AuthModal.styled";
+import { AuthContext } from "@/contexts/AuthContext";
 
-const AuthModalForm: React.FC<{ mode: string; onLogin: () => void }> = ({
-  mode,
-  onLogin,
-}) => {
-  const login = useRef<HTMLInputElement>(null);
+const AuthModalForm: React.FC<{ mode: string }> = ({ mode }) => {
+  const username = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
+
+  const { handleLogin, handleModal } = useContext(AuthContext);
 
   const isLogin = mode === "login";
 
   const handleAuthForm = () => {
     if (isLogin) {
-      onLogin();
+      handleLogin(true);
+      handleModal(false);
     }
   };
 
@@ -26,7 +27,12 @@ const AuthModalForm: React.FC<{ mode: string; onLogin: () => void }> = ({
     <StyledFormBox component="form">
       <StyledInputWrapper>
         <PersonIcon />
-        <TextField ref={login} variant="standard" label="Login" type="text" />
+        <TextField
+          ref={username}
+          variant="standard"
+          label="Login"
+          type="text"
+        />
       </StyledInputWrapper>
       <StyledInputWrapper>
         <PasswordIcon />

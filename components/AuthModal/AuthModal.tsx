@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  Typography,
-} from "@mui/material";
+import { DialogTitle, DialogContentText, Typography } from "@mui/material";
 
 import { AuthMode, AuthModalProps } from "./AuthModal.types";
 
@@ -19,11 +12,7 @@ const dialogContents = {
   signup: "Create new account",
 };
 
-const AuthModal: React.FC<AuthModalProps> = ({
-  onModalClose,
-  onLogin,
-  modalOpen,
-}) => {
+const AuthModal: React.FC<AuthModalProps> = ({ onModalClose, modalOpen }) => {
   const [mode, setMode] = useState<AuthMode>("login");
 
   const isLogin = mode === "login";
@@ -38,7 +27,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
           <DialogContentText>
             {isLogin ? dialogContents.login : dialogContents.signup}
           </DialogContentText>
-          <AuthModalForm mode={mode} onLogin={onLogin} />
+          <AuthModalForm mode={mode} />
           {mode === "login" && (
             <Typography
               onClick={() => setMode("signup")}

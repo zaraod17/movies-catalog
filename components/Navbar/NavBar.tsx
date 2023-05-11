@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { Typography, Box } from "@mui/material";
 import {
@@ -10,30 +10,22 @@ import {
   InputWrapper,
 } from "./NavBar.styled";
 
+import { AuthContext } from "@/contexts/AuthContext";
+
 import UserDropdown from "./UserDropdown/UserDropdown";
 import SearchField from "../SearchField/SearchField";
 import MenuDropdown from "./MenuDropdown/MenuDropdown";
 import AuthModal from "@/components/AuthModal/AuthModal";
 
 const NavBar: React.FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
-  const [isLogin, setIsLogin] = useState<boolean>(false);
-
-  const handleLogin = (): void => {
-    setIsLogin(true);
-    setOpen(false);
-  };
-
-  const handleLogout = (): void => {
-    setIsLogin(false);
-  };
+  const { login, openModal, handleModal } = useContext(AuthContext);
 
   const handleOpenModal = () => {
-    setOpen(true);
+    handleModal(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    handleModal(false);
   };
 
   return (
@@ -53,13 +45,9 @@ const NavBar: React.FC = () => {
           <InputWrapper>
             <SearchField />
           </InputWrapper>
-          <AuthModal
-            modalOpen={open}
-            onModalClose={handleClose}
-            onLogin={handleLogin} // TODO: create context for this to avoid props chain (create login context)
-          />
-          {isLogin ? (
-            <UserDropdown onLogout={handleLogout} />
+          <AuthModal modalOpen={openModal} onModalClose={handleClose} />
+          {login ? (
+            <UserDropdown />
           ) : (
             <StyledButton onClick={handleOpenModal}>Login</StyledButton>
           )}
