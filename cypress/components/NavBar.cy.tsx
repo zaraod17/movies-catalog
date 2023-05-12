@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "./NavBar";
+import NavBar from "@/components/Navbar/NavBar";
 
 describe("Text on button", () => {
   it("Text on button", () => {
