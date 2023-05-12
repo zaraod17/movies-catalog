@@ -49,7 +49,9 @@ const NavBar: React.FC = () => {
           {login ? (
             <UserDropdown />
           ) : (
-            <StyledButton onClick={handleOpenModal}>Login</StyledButton>
+            <StyledButton onClick={handleOpenModal} data-cy="login" className="dupa">
+              Login
+            </StyledButton>
           )}
         </StyledToolbar>
       </StyledAppBar>

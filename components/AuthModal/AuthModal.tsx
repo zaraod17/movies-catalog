@@ -20,7 +20,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onModalClose, modalOpen }) => {
   return (
     <>
       <StyledDialog onClose={onModalClose} open={modalOpen}>
-        <DialogTitle sx={{ textAlign: "center" }}>
+        <DialogTitle sx={{ textAlign: "center" }} data-cy="modal-title">
           {isLogin ? "Sign in" : "Sign up"}
         </DialogTitle>
         <StyledDialogContent>
@@ -33,6 +33,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onModalClose, modalOpen }) => {
               onClick={() => setMode("signup")}
               component="span"
               variant="caption"
+              data-cy="mode-changer"
             >
               Create an account
             </Typography>
@@ -42,6 +43,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onModalClose, modalOpen }) => {
               onClick={() => setMode("login")}
               component="span"
               variant="caption"
+              data-cy="mode-changer"
             >
               Log in to your account
             </Typography>
