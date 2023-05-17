@@ -56,4 +56,8 @@ export const StyledGridItemActions = styled(Box)(() => ({
   borderBottomRightRadius: "1rem",
   color: "white",
   display: "none",
+
+  button: {
+    color: "white",
+  },
 }));
