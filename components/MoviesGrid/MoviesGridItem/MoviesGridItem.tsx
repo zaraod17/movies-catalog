@@ -8,7 +8,7 @@ import { MoviesGridItemsProps } from "./MoviesGridItem.types";
 
 const MoviesGridItem: React.FC<MoviesGridItemsProps> = ({ img, title }) => {
   return (
-    <StyledMoviesGridItem item xs={4}>
+    <StyledMoviesGridItem item xs={12} md={4}>
       <Paper elevation={1}>
         <img src={img} alt={title} />
         <StyledGridItemActions>Dupa</StyledGridItemActions>
