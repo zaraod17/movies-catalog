@@ -18,7 +18,7 @@ import {
 } from "./MovieDetails.styled";
 
 import { MoviesListElementProps } from "@/components/MoviesList/MoviesListElement/MoviesListElement.types";
-import { DUMMY_MOVIES } from "@/store/dummy-data";
+import { DUMMY_MOVIES } from "@/data/dummy-data";
 
 const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
   const [selectedMovie, setSelectedMovie] = useState<MoviesListElementProps>();

@@ -1,12 +1,11 @@
 import MoviesGrid from "@/components/MoviesGrid/MoviesGrid";
 
-import { itemData } from "@/data/dummy-data";
+import { DUMMY_MOVIES } from "@/data/dummy-data";
 
 const WatchListPage: React.FC = () => {
   return (
     <>
-      <div>Watch list page</div>
-      <MoviesGrid items={itemData}/>
+      <MoviesGrid items={DUMMY_MOVIES} />
     </>
   );
 };

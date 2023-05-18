@@ -5,7 +5,7 @@ import { List, Typography } from "@mui/material";
 import { StyledListWrapper, StyledLink } from "./MoviesList.styled";
 import MoviesListElement from "./MoviesListElement/MoviesListElement";
 
-import { DUMMY_MOVIES } from "@/store/dummy-data";
+import { DUMMY_MOVIES } from "@/data/dummy-data";
 
 const MoviesList: React.FC<{ listTitle: string }> = ({ listTitle }) => {
   return (
