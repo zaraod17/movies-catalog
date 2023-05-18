@@ -1,5 +1,4 @@
 import MovieDetails from "@/components/MovieDetails/MovieDetails";
-import { useRouter } from "next/router";
 
 import { GetServerSideProps } from "next/types";
 
