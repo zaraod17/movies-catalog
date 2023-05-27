@@ -400,5 +400,11 @@
       "views": 6123
     }
   ],
-  "users": []
+  "users": [
+    {
+      "email": "user@user.com",
+      "password": "user123",
+      "username": "user"
+    }
+  ]
 }
