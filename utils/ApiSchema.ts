@@ -5,6 +5,8 @@ export const typeDefs = gql`
     hello: String
     getMovies: [Movie]
     getPopularMovies: [Movie]
+    getLatestReleases: [Movie]
+    getUpcomingMovies: [Movie]
   }
 
   type Movie {

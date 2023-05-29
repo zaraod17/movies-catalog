@@ -398,6 +398,177 @@
       ],
       "categories": ["action", "sci-fi"],
       "views": 6123
+    },
+    {
+      "id": 21,
+      "title": "Avengers: Infinity War",
+      "imgUrl": "https://example.com/avengers-infinity-war.jpg",
+      "productionYear": 2024,
+      "numberOfRatings": 5000,
+      "sumOfRatings": 9500,
+      "description": "The Avengers team up to battle against the powerful Thanos.",
+      "trailerUrl": "https://youtube.com/embed/example",
+      "actors": [
+        "Robert Downey Jr.",
+        "Chris Evans",
+        "Chris Hemsworth",
+        "Scarlett Johansson",
+        "Mark Ruffalo"
+      ],
+      "categories": ["action", "adventure"],
+      "views": 8000
+    },
+    {
+      "id": 22,
+      "title": "Jurassic World: Dominion",
+      "imgUrl": "https://example.com/jurassic-world-dominion.jpg",
+      "productionYear": 2024,
+      "numberOfRatings": 3500,
+      "sumOfRatings": 8200,
+      "description": "Dinosaurs roam the Earth once again in this thrilling adventure.",
+      "trailerUrl": "https://youtube.com/embed/example",
+      "actors": [
+        "Chris Pratt",
+        "Bryce Dallas Howard",
+        "Jeff Goldblum",
+        "Sam Neill",
+        "Laura Dern"
+      ],
+      "categories": ["action", "adventure", "sci-fi"],
+      "views": 4000
+    },
+    {
+      "id": 23,
+      "title": "Mission: Impossible 8",
+      "imgUrl": "https://example.com/mission-impossible-8.jpg",
+      "productionYear": 2025,
+      "numberOfRatings": 2800,
+      "sumOfRatings": 7600,
+      "description": "Ethan Hunt returns for another high-stakes, action-packed mission.",
+      "trailerUrl": "https://youtube.com/embed/example",
+      "actors": [
+        "Tom Cruise",
+        "Simon Pegg",
+        "Ving Rhames",
+        "Rebecca Ferguson",
+        "Henry Czerny"
+      ],
+      "categories": ["action", "spy", "thriller"],
+      "views": 3200
+    },
+    {
+      "id": 24,
+      "title": "Black Panther: Wakanda Forever",
+      "imgUrl": "https://example.com/black-panther-wakanda-forever.jpg",
+      "productionYear": 2023,
+      "numberOfRatings": 4200,
+      "sumOfRatings": 8800,
+      "description": "The story continues in the sequel to Black Panther, exploring the world of Wakanda.",
+      "trailerUrl": "https://youtube.com/embed/example",
+      "actors": [
+        "Chadwick Boseman",
+        "Letitia Wright",
+        "Danai Gurira",
+        "Martin Freeman",
+        "Lupita Nyong'o"
+      ],
+      "categories": ["action", "adventure"],
+      "views": 5500
+    },
+    {
+      "id": 26,
+      "title": "Fantastic Beasts 4",
+      "imgUrl": "https://example.com/fantastic-beasts-4.jpg",
+      "productionYear": 2024,
+      "numberOfRatings": 2000,
+      "sumOfRatings": 7200,
+      "description": "New magical adventures unfold in the fourth installment of the Fantastic Beasts series.",
+      "trailerUrl": "https://youtube.com/embed/example",
+      "actors": [
+        "Eddie Redmayne",
+        "Katherine Waterston",
+        "Dan Fogler",
+        "Alison Sudol",
+        "Jude Law"
+      ],
+      "categories": ["fantasy", "adventure"],
+      "views": 2800
+    },
+    {
+      "id": 27,
+      "title": "The Flash",
+      "imgUrl": "https://example.com/the-flash.jpg",
+      "productionYear": 2023,
+      "numberOfRatings": 4500,
+      "sumOfRatings": 8900,
+      "description": "Barry Allen, aka The Flash, speeds into action to save the day.",
+      "trailerUrl": "https://youtube.com/embed/example",
+      "actors": [
+        "Ezra Miller",
+        "Ben Affleck",
+        "Michael Keaton",
+        "Kiersey Clemons",
+        "Sasha Calle"
+      ],
+      "categories": ["action", "superhero"],
+      "views": 6100
+    },
+    {
+      "id": 27,
+      "title": "The Flash",
+      "imgUrl": "https://example.com/the-flash.jpg",
+      "productionYear": 2023,
+      "numberOfRatings": 4500,
+      "sumOfRatings": 8900,
+      "description": "Barry Allen, aka The Flash, speeds into action to save the day.",
+      "trailerUrl": "https://youtube.com/embed/example",
+      "actors": [
+        "Ezra Miller",
+        "Ben Affleck",
+        "Michael Keaton",
+        "Kiersey Clemons",
+        "Sasha Calle"
+      ],
+      "categories": ["action", "superhero"],
+      "views": 6100
+    },
+    {
+      "id": 28,
+      "title": "James Bond: No Time to Die",
+      "imgUrl": "https://example.com/no-time-to-die.jpg",
+      "productionYear": 2024,
+      "numberOfRatings": 3800,
+      "sumOfRatings": 9100,
+      "description": "James Bond returns for another thrilling mission to save the world.",
+      "trailerUrl": "https://youtube.com/embed/example",
+      "actors": [
+        "Daniel Craig",
+        "Léa Seydoux",
+        "Rami Malek",
+        "Lashana Lynch",
+        "Ben Whishaw"
+      ],
+      "categories": ["action", "spy", "thriller"],
+      "views": 5700
+    },
+    {
+      "id": 29,
+      "title": "Doctor Strange in the Multiverse of Madness",
+      "imgUrl": "https://example.com/doctor-strange-multiverse-of-madness.jpg",
+      "productionYear": 2023,
+      "numberOfRatings": 3900,
+      "sumOfRatings": 9300,
+      "description": "Doctor Strange embarks on a mind-bending journey through the multiverse.",
+      "trailerUrl": "https://youtube.com/embed/example",
+      "actors": [
+        "Benedict Cumberbatch",
+        "Elizabeth Olsen",
+        "Chiwetel Ejiofor",
+        "Rachel McAdams",
+        "Benedict Wong"
+      ],
+      "categories": ["action", "adventure", "fantasy"],
+      "views": 4900
     }
   ],
   "users": [
