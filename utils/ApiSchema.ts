@@ -7,6 +7,7 @@ export const typeDefs = gql`
     getPopularMovies: [Movie]
     getLatestReleases: [Movie]
     getUpcomingMovies: [Movie]
+    getSingleMovie(id: ID!): Movie
   }
 
   type Movie {

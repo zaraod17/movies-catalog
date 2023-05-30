@@ -36,5 +36,12 @@ export const resolvers = {
 
       return firstTen;
     },
+    getSingleMovie: (parent: any, args: any, contextValue: any, info: any) => {
+      const selectedMovie = jsonData.movies.find(
+        (movie) => movie.id == args.id
+      );
+
+      return selectedMovie;
+    },
   },
 };
