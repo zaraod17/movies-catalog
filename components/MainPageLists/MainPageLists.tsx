@@ -3,7 +3,9 @@ import { Grid } from "@mui/material";
 import MoviesList from "../MoviesList/MoviesList";
 import { StyledGridItem } from "./MainPageList.styled";
 
-const listNames: string[] = [
+import { ListTitleType } from "./MainPageList.types";
+
+const listNames: ListTitleType[] = [
   "Popular Movies",
   "Latest Releases",
   "Upcoming Movies",
