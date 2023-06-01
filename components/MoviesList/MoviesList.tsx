@@ -6,21 +6,17 @@ import MoviesListElement from "./MoviesListElement/MoviesListElement";
 
 import { DUMMY_MOVIES } from "@/data/dummy-data";
 import { ListTitleType } from "@/components/MainPageLists/MainPageList.types";
-import {
-  GET_POPURLAR_MOVIES,
-  GET_LATEST_RELEASES,
-  GET_UPCOMING_MOVIES,
-} from "@/utils/ApiClientQueries";
+import { GET_MOVIES_LIST } from "@/utils/ApiClientQueries";
+import {MovieDataType} from './MoviesList.types'
 
 const MoviesList: React.FC<{ listTitle: ListTitleType }> = ({ listTitle }) => {
-  const query =
-    listTitle === "Popular Movies"
-      ? GET_POPURLAR_MOVIES
-      : listTitle === "Latest Releases"
-      ? GET_LATEST_RELEASES
-      : GET_UPCOMING_MOVIES;
-
-  const { loading, error, data } = useQuery(query);
+  const {
+    loading,
+    error,
+    data,
+  }: { loading: boolean; error?: any; data?: MovieDataType } = useQuery(GET_MOVIES_LIST, {
+    variables: { category: listTitle },
+  });
 
   if (loading) {
     return <CircularProgress />;
@@ -32,7 +28,7 @@ const MoviesList: React.FC<{ listTitle: ListTitleType }> = ({ listTitle }) => {
         {listTitle}
       </Typography>
       <List>
-        {DUMMY_MOVIES.map((movie) => (
+        {data?.moviesList.map((movie) => (
           <StyledLink key={movie.id} href={`/movie-details/${movie.id}`}>
             <MoviesListElement {...movie} />
           </StyledLink>

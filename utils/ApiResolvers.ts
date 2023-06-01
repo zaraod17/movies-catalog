@@ -12,30 +12,40 @@ export const resolvers = {
     movies: () => {
       return jsonData.movies;
     },
-    popularMovies: () => {
-      const sortedMovies = jsonData.movies.sort((a, b) => +b.views - +a.views);
-      const firstTenMovies = sortedMovies.slice(0, 10);
 
-      return firstTenMovies;
+    moviesList: (
+      parent: any,
+      args: { category: string },
+      contextValue: any,
+      info: any
+    ) => {
+      switch (args.category) {
+        case "Popular Movies":
+          const sortedMovies = jsonData.movies.sort(
+            (a, b) => +b.views - +a.views
+          );
+          const firstTenMovies = sortedMovies.slice(0, 10);
+
+          return firstTenMovies;
+        case "Latest Releases":
+          const sMovies = jsonData.movies.sort(
+            (a, b) => +b.productionYear - +a.productionYear
+          );
+          const firstTen = sMovies.slice(0, 10);
+
+          return firstTen;
+        case "Upcoming Movies":
+          const currentDate = new Date();
+          const upcomingMovies = jsonData.movies.filter(
+            (movie) => movie.productionYear >= currentDate.getFullYear()
+          );
+
+          const fTen = upcomingMovies.slice(0, 10);
+
+          return fTen;
+      }
     },
-    latestReleases: () => {
-      const sortedMovies = jsonData.movies.sort(
-        (a, b) => +b.productionYear - +a.productionYear
-      );
-      const firstTen = sortedMovies.slice(0, 10);
 
-      return firstTen;
-    },
-    upcomingMovies: () => {
-      const currentDate = new Date();
-      const upcomingMovies = jsonData.movies.filter(
-        (movie) => movie.productionYear >= currentDate.getFullYear()
-      );
-
-      const firstTen = upcomingMovies.slice(0, 10);
-
-      return firstTen;
-    },
     singleMovie: (parent: any, args: any, contextValue: any, info: any) => {
       const selectedMovie = jsonData.movies.find(
         (movie) => movie.id == args.id

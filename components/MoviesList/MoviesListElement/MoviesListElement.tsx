@@ -31,7 +31,7 @@ const MoviesListElement: React.FC<MoviesListElementProps> = ({
           <RateIconWrapper className="rate-icon-wrapper">
             <StarRateIcon></StarRateIcon>
             <Typography component="div" variant="body2">
-              {rating}
+              {rating.toFixed(2)}
             </Typography>
           </RateIconWrapper>
         </ImageWrapper>

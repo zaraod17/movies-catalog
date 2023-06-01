@@ -4,9 +4,7 @@ export const typeDefs = gql`
   type Query {
     hello: String
     movies: [Movie]
-    popularMovies: [Movie]
-    latestReleases: [Movie]
-    upcomingMovies: [Movie]
+    moviesList(category: String): [Movie]
     singleMovie(id: ID!): Movie
   }
 

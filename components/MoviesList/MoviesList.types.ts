@@ -1,4 +1,4 @@
-export interface MoviesListElementProps {
+interface Movie {
   id: number | string;
   title: string;
   imgUrl: string;
@@ -11,3 +11,7 @@ export interface MoviesListElementProps {
   categories: string[];
   views: number;
 }
+
+export type MoviesListType = Movie[];
+
+export type MovieDataType = { moviesList: MoviesListType };
