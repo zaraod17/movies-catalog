@@ -37,6 +37,7 @@ const MoviesList: React.FC<{ listTitle: ListTitleType }> = ({ listTitle }) => {
             <MoviesListElement {...movie} />
           </StyledLink>
         ))}
+        <button onClick={() => console.log(data)}>Dupa</button>
       </List>
     </StyledListWrapper>
   );

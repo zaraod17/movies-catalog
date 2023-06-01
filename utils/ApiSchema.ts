@@ -3,11 +3,11 @@ import { gql } from "apollo-server-micro";
 export const typeDefs = gql`
   type Query {
     hello: String
-    getMovies: [Movie]
-    getPopularMovies: [Movie]
-    getLatestReleases: [Movie]
-    getUpcomingMovies: [Movie]
-    getSingleMovie(id: ID!): Movie
+    movies: [Movie]
+    popularMovies: [Movie]
+    latestReleases: [Movie]
+    upcomingMovies: [Movie]
+    singleMovie(id: ID!): Movie
   }
 
   type Movie {
