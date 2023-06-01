@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const GET_MOVIES = gql`
   query Query {
-    getMovies {
+    movies {
       title
     }
   }
@@ -10,7 +10,7 @@ export const GET_MOVIES = gql`
 
 export const GET_POPURLAR_MOVIES = gql`
   query Query {
-    getPopularMovies {
+    popularMovies {
       id
       title
       imgUrl
@@ -28,7 +28,7 @@ export const GET_POPURLAR_MOVIES = gql`
 
 export const GET_LATEST_RELEASES = gql`
   query Query {
-    getLatestReleases {
+    latestReleases {
       id
       title
       imgUrl
@@ -46,7 +46,7 @@ export const GET_LATEST_RELEASES = gql`
 
 export const GET_UPCOMING_MOVIES = gql`
   query Query {
-    getUpcomingMovies {
+    upcomingMovies {
       id
       title
       imgUrl

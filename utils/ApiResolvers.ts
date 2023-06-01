@@ -9,16 +9,16 @@ const jsonData: JsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 export const resolvers = {
   Query: {
     // hello: () => "Hello, GraphQL!",
-    getMovies: () => {
+    movies: () => {
       return jsonData.movies;
     },
-    getPopularMovies: () => {
+    popularMovies: () => {
       const sortedMovies = jsonData.movies.sort((a, b) => +b.views - +a.views);
       const firstTenMovies = sortedMovies.slice(0, 10);
 
       return firstTenMovies;
     },
-    getLatestReleases: () => {
+    latestReleases: () => {
       const sortedMovies = jsonData.movies.sort(
         (a, b) => +b.productionYear - +a.productionYear
       );
@@ -26,7 +26,7 @@ export const resolvers = {
 
       return firstTen;
     },
-    getUpcomingMovies: () => {
+    upcomingMovies: () => {
       const currentDate = new Date();
       const upcomingMovies = jsonData.movies.filter(
         (movie) => movie.productionYear >= currentDate.getFullYear()
@@ -36,7 +36,7 @@ export const resolvers = {
 
       return firstTen;
     },
-    getSingleMovie: (parent: any, args: any, contextValue: any, info: any) => {
+    singleMovie: (parent: any, args: any, contextValue: any, info: any) => {
       const selectedMovie = jsonData.movies.find(
         (movie) => movie.id == args.id
       );
