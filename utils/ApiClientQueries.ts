@@ -25,3 +25,21 @@ export const GET_MOVIES_LIST = gql`
     }
   }
 `;
+
+export const GET_SINGLE_MOVIE = gql`
+  query Query($id: ID!) {
+    singleMovie(id: $id) {
+      id
+      title
+      imgUrl
+      productionYear
+      sumOfRatings
+      numberOfRatings
+      description
+      trailerUrl
+      actors
+      categories
+      views
+    }
+  }
+`;

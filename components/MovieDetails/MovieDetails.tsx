@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ApolloError, useQuery } from "@apollo/client";
 
 import {
   CircularProgress,
@@ -18,34 +19,44 @@ import {
 } from "./MovieDetails.styled";
 
 import { MoviesListElementProps } from "@/components/MoviesList/MoviesListElement/MoviesListElement.types";
-import { DUMMY_MOVIES } from "@/data/dummy-data";
+import { GET_SINGLE_MOVIE } from "@/utils/ApiClientQueries";
+import { MovieType } from "./MovieDetails.types";
 
 const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
   const [selectedMovie, setSelectedMovie] = useState<MoviesListElementProps>();
 
-  useEffect(() => {
-    const movie = DUMMY_MOVIES.find((movie) => movie.id === id);
-    setSelectedMovie(movie!);
-  }, [id]);
+  const {
+    loading,
+    error,
+    data,
+  }: {
+    loading: boolean;
+    error?: ApolloError | undefined;
+    data?: { singleMovie: MovieType };
+  } = useQuery(GET_SINGLE_MOVIE, { variables: { id: id } });
 
-  if (!selectedMovie) {
-    return <CircularProgress />;
+  if (loading) {
+    return (
+      <Box>
+        <CircularProgress />
+      </Box>
+    );
   }
 
   return (
     <>
       <StyledBox>
         <StyledWrapper className="movie-info">
-          <StyledImg src={selectedMovie.imgUrl}></StyledImg>
+          <StyledImg src={data?.singleMovie.imgUrl}></StyledImg>
           <Box>
             <Typography component="div" variant="h5" color="initial">
-              {selectedMovie.title}
+              {data?.singleMovie.title}
             </Typography>
             <StyledInfo>
               <Typography component="span" variant="subtitle2">
-                {selectedMovie.productionYear} {"|"}
+                {data?.singleMovie.productionYear} {"|"}
               </Typography>
-              {selectedMovie.categories.map((category) => (
+              {data?.singleMovie.categories.map((category) => (
                 <Typography component="p" variant="caption" key={category}>
                   {category.toUpperCase()}
                 </Typography>
@@ -56,7 +67,7 @@ const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
               component="div"
               variant="caption"
             >
-              {selectedMovie.description}
+              {data?.singleMovie.description}
             </Typography>
           </Box>
         </StyledWrapper>
@@ -68,14 +79,14 @@ const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
               </ListSubheader>
             }
           >
-            {selectedMovie.actors.map((actor) => (
+            {data?.singleMovie.actors.map((actor) => (
               <ListItem key={actor}>* {actor}</ListItem>
             ))}
           </ActorsList>
         </StyledWrapper>
       </StyledBox>
       <MovieTrailerWrapper>
-        <StyledFrame src={selectedMovie.trailerUrl}></StyledFrame>
+        <StyledFrame src={data?.singleMovie.trailerUrl}></StyledFrame>
       </MovieTrailerWrapper>
     </>
   );
