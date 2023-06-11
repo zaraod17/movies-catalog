@@ -555,8 +555,43 @@
   "users": [
     {
       "email": "user@user.com",
+      "username": "user",
       "password": "user123",
-      "username": "user"
+      "favorites": [
+        { "movieId": 1 },
+        { "movieId": 2 },
+        { "movieId": 3 },
+        { "movieId": 4 },
+        { "movieId": 5 }
+      ],
+      "myList": [
+        { "movieId": 1 },
+        { "movieId": 2 },
+        { "movieId": 6 },
+        { "movieId": 8 },
+        { "movieId": 10 },
+        { "movieId": 15 }
+      ]
+    },
+    {
+      "email": "user1@example.com",
+      "username": "user1",
+      "password": "password123",
+      "favorites": [
+        { "movieId": 13 },
+        { "movieId": 25 },
+        { "movieId": 13 },
+        { "movieId": 14 },
+        { "movieId": 15 }
+      ],
+      "myList": [
+        { "movieId": 12 },
+        { "movieId": 12 },
+        { "movieId": 16 },
+        { "movieId": 18 },
+        { "movieId": 17 },
+        { "movieId": 19 }
+      ]
     }
   ]
 }
