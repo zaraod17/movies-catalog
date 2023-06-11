@@ -53,5 +53,45 @@ export const resolvers = {
 
       return selectedMovie;
     },
+
+    userFavoriteMovies: (
+      parent: any,
+      args: { userEmail: string },
+      contextValue: any,
+      info: any
+    ) => {
+      const selectedUser = jsonData.users.find(
+        (user) => user.email === args.userEmail
+      );
+
+      const favoriteMovieIdsSet = new Set(
+        selectedUser?.favorites?.map((fav) => fav.movieId)
+      );
+      const favorites = jsonData.movies.filter((movie) =>
+        favoriteMovieIdsSet.has(movie.id)
+      );
+
+      return favorites;
+    },
+
+    userMoviesList: (
+      parent: any,
+      args: { userEmail: string },
+      contextValue: any,
+      info: any
+    ) => {
+      const selectedUser = jsonData.users.find(
+        (user) => user.email === args.userEmail
+      );
+
+      const userListIdsSet = new Set(
+        selectedUser?.myList?.map((fav) => fav.movieId)
+      );
+      const userList = jsonData.movies.filter((movie) =>
+        userListIdsSet.has(movie.id)
+      );
+
+      return userList;
+    },
   },
 };

@@ -1,3 +1,11 @@
+interface User {
+  email: string;
+  username: string;
+  password: string;
+  favorites: { movieId: string | number }[];
+  myList: { movieId: string | number }[];
+}
+
 export type JsonData = {
   movies: [
     {
@@ -14,5 +22,5 @@ export type JsonData = {
       views: number;
     }
   ];
-  users: [];
+  users: User[];
 };

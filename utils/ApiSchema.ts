@@ -6,6 +6,8 @@ export const typeDefs = gql`
     movies: [Movie]
     moviesList(category: String): [Movie]
     singleMovie(id: ID!): Movie
+    userFavoriteMovies(userEmail: String): [Movie]
+    userMoviesList(userEmail: String): [Movie]
   }
 
   type Movie {
