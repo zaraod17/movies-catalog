@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ApolloError, useQuery } from "@apollo/client";
 
 import {
@@ -19,7 +19,7 @@ import {
 } from "./MovieDetails.styled";
 
 import { MoviesListElementProps } from "@/components/MoviesList/MoviesListElement/MoviesListElement.types";
-import { GET_SINGLE_MOVIE } from "@/utils/ApiClientQueries";
+import { GET_SINGLE_MOVIE } from "@/utils/api-client-queries";
 import { MovieType } from "./MovieDetails.types";
 
 const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
