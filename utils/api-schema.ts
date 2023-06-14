@@ -10,6 +10,14 @@ export const typeDefs = gql`
     userMoviesList(userEmail: String): [Movie]
   }
 
+  type Mutation {
+    login(email: String!, password: String!): AuthPayload!
+  }
+
+  type AuthPayload {
+    token: String!
+  }
+
   type Movie {
     id: ID!
     title: String

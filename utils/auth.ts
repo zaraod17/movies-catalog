@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
-import { AuthToken, User } from "./auth-types";
+import { AuthToken } from "./auth-types";
 
 export const generateToken = (payload: AuthToken) => {
   // Generate JWT with provided payload

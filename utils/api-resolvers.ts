@@ -1,7 +1,11 @@
 import fs from "fs";
 import path from "path";
 
-import { JsonData } from "./ResolverTypes";
+import { verifyToken,  } from "./auth";
+
+import { User } from "./auth-types";
+
+import { JsonData } from "./resolver-types";
 
 const filePath = path.join(process.cwd(), "data", "api-data.json");
 const jsonData: JsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
@@ -92,6 +96,15 @@ export const resolvers = {
       );
 
       return userList;
+    },
+  },
+  Mutation: {
+    login: (parent: any, args: User, context: any) => {
+      const { email, password } = args;
+
+      // implement fetching user from json file
+
+      
     },
   },
 };
