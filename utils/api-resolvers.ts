@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-import { verifyToken,  } from "./auth";
+import { verifyToken, comparePassword, generateToken } from "./auth";
 
 import { User } from "./auth-types";
 
@@ -102,9 +102,21 @@ export const resolvers = {
     login: (parent: any, args: User, context: any) => {
       const { email, password } = args;
 
-      // implement fetching user from json file
+      const user = jsonData.users.find((user) => user.email === email);
 
-      
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      const isMatch = comparePassword(password, user.password);
+
+      if (!isMatch) {
+        throw new Error("Incorrect password");
+      }
+
+      const token = generateToken({ id: user.id, email: user.email });
+
+      return token;
     },
   },
 };

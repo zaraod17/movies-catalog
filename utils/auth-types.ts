@@ -1,10 +1,10 @@
 export interface AuthToken {
-  id: string;
-  password: string;
+  id: string | number;
+  email: string;
 }
 
 export interface User {
-  id: string;
+  id: string | number;
   email: string;
   password: string;
 }
