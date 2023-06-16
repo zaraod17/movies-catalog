@@ -1,9 +1,15 @@
 import fs from "fs";
 import path from "path";
 
-import { verifyToken, comparePassword, generateToken } from "./auth";
+import {
+  verifyToken,
+  comparePassword,
+  generateToken,
+  hashPassword,
+} from "./auth";
 
 import { User } from "./auth-types";
+import UnauthorizedError from "@/models/unauthorized-error";
 
 import { JsonData } from "./resolver-types";
 
@@ -13,7 +19,15 @@ const jsonData: JsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 export const resolvers = {
   Query: {
     // hello: () => "Hello, GraphQL!",
-    movies: () => {
+    movies: (
+      parent: any,
+      args: { category: string },
+      contextValue: any,
+      info: any
+    ) => {
+      if (!contextValue.user) {
+        throw new UnauthorizedError("Unauthorized", 401);
+      }
       return jsonData.movies;
     },
 
@@ -97,9 +111,8 @@ export const resolvers = {
 
       return userList;
     },
-  },
-  Mutation: {
-    login: (parent: any, args: User, context: any) => {
+
+    login: async (parent: any, args: User, contextValue: any, info: any) => {
       const { email, password } = args;
 
       const user = jsonData.users.find((user) => user.email === email);
@@ -108,7 +121,9 @@ export const resolvers = {
         throw new Error("User not found");
       }
 
-      const isMatch = comparePassword(password, user.password);
+      const hashedPassword = await hashPassword(password);
+
+      const isMatch = password === user.password;
 
       if (!isMatch) {
         throw new Error("Incorrect password");
@@ -116,7 +131,7 @@ export const resolvers = {
 
       const token = generateToken({ id: user.id, email: user.email });
 
-      return token;
+      return { token: token ?? "" };
     },
   },
 };

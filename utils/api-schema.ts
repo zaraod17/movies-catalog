@@ -8,9 +8,6 @@ export const typeDefs = gql`
     singleMovie(id: ID!): Movie
     userFavoriteMovies(userEmail: String): [Movie]
     userMoviesList(userEmail: String): [Movie]
-  }
-
-  type Mutation {
     login(email: String!, password: String!): AuthPayload!
   }
 
