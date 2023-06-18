@@ -43,3 +43,11 @@ export const GET_SINGLE_MOVIE = gql`
     }
   }
 `;
+
+export const LOGIN = gql`
+  query Query($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+    }
+  }
+`;

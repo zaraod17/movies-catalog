@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ApolloError, useQuery } from "@apollo/client";
 
 import {
@@ -23,8 +22,6 @@ import { GET_SINGLE_MOVIE } from "@/utils/api-client-queries";
 import { MovieType } from "./MovieDetails.types";
 
 const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
-  const [selectedMovie, setSelectedMovie] = useState<MoviesListElementProps>();
-
   const {
     loading,
     error,

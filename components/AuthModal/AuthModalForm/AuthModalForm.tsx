@@ -9,10 +9,10 @@ import { StyledFormBox, StyledInputWrapper } from "../AuthModal.styled";
 import { AuthContext } from "@/contexts/AuthContext";
 
 const AuthModalForm: React.FC<{ mode: string }> = ({ mode }) => {
-  const username = useRef<HTMLInputElement>(null);
+  const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
-  const { handleLogin, handleModal } = useContext(AuthContext);
+  const { handleLogin, handleModal, getToken } = useContext(AuthContext);
 
   const isLogin = mode === "login";
 
@@ -20,6 +20,7 @@ const AuthModalForm: React.FC<{ mode: string }> = ({ mode }) => {
     if (isLogin) {
       handleLogin(true);
       handleModal(false);
+      getToken(email.current?.value, password.current?.value);
     }
   };
 
@@ -28,16 +29,16 @@ const AuthModalForm: React.FC<{ mode: string }> = ({ mode }) => {
       <StyledInputWrapper>
         <PersonIcon />
         <TextField
-          ref={username}
+          inputRef={email}
           variant="standard"
-          label="Login"
+          label="Email"
           type="text"
         />
       </StyledInputWrapper>
       <StyledInputWrapper>
         <PasswordIcon />
         <TextField
-          ref={password}
+          inputRef={password}
           variant="standard"
           label="Password"
           type="text"
