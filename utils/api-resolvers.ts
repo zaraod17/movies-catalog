@@ -24,9 +24,6 @@ export const resolvers = {
       contextValue: any,
       info: any
     ) => {
-      if (!contextValue.user) {
-        throw new CustomError("Unauthorized", 401);
-      }
       return jsonData.movies;
     },
 
@@ -36,10 +33,6 @@ export const resolvers = {
       contextValue: any,
       info: any
     ) => {
-      if (!contextValue.user) {
-        throw new CustomError("Unauthorized", 401);
-      }
-
       switch (args.category) {
         case "Popular Movies":
           const sortedMovies = jsonData.movies.sort(
@@ -68,10 +61,6 @@ export const resolvers = {
     },
 
     singleMovie: (parent: any, args: any, contextValue: any, info: any) => {
-      if (!contextValue.user) {
-        throw new CustomError("Unauthorized", 401);
-      }
-
       const selectedMovie = jsonData.movies.find(
         (movie) => movie.id == args.id
       );
