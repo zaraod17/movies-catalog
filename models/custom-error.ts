@@ -1,11 +1,11 @@
-class UnauthorizedError extends Error {
+class CustomError extends Error {
   statusCode: number;
 
   constructor(message: string, statusCode: number) {
     super(message);
     this.statusCode = statusCode;
-    Object.setPrototypeOf(this, UnauthorizedError.prototype);
+    Object.setPrototypeOf(this, CustomError.prototype);
   }
 }
 
-export default UnauthorizedError;
+export default CustomError;

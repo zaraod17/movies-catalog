@@ -9,7 +9,7 @@ import {
 } from "./auth";
 
 import { User } from "./auth-types";
-import UnauthorizedError from "@/models/unauthorized-error";
+import CustomError from "@/models/custom-error";
 
 import { JsonData } from "./resolver-types";
 
@@ -18,7 +18,6 @@ const jsonData: JsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
 
 export const resolvers = {
   Query: {
-    // hello: () => "Hello, GraphQL!",
     movies: (
       parent: any,
       args: { category: string },
@@ -26,7 +25,7 @@ export const resolvers = {
       info: any
     ) => {
       if (!contextValue.user) {
-        throw new UnauthorizedError("Unauthorized", 401);
+        throw new CustomError("Unauthorized", 401);
       }
       return jsonData.movies;
     },
@@ -37,6 +36,10 @@ export const resolvers = {
       contextValue: any,
       info: any
     ) => {
+      if (!contextValue.user) {
+        throw new CustomError("Unauthorized", 401);
+      }
+
       switch (args.category) {
         case "Popular Movies":
           const sortedMovies = jsonData.movies.sort(
@@ -65,6 +68,10 @@ export const resolvers = {
     },
 
     singleMovie: (parent: any, args: any, contextValue: any, info: any) => {
+      if (!contextValue.user) {
+        throw new CustomError("Unauthorized", 401);
+      }
+
       const selectedMovie = jsonData.movies.find(
         (movie) => movie.id == args.id
       );
@@ -78,6 +85,10 @@ export const resolvers = {
       contextValue: any,
       info: any
     ) => {
+      if (!contextValue.user) {
+        throw new CustomError("Unauthorized", 401);
+      }
+
       const selectedUser = jsonData.users.find(
         (user) => user.email === args.userEmail
       );
@@ -98,6 +109,10 @@ export const resolvers = {
       contextValue: any,
       info: any
     ) => {
+      if (!contextValue.user) {
+        throw new CustomError("Unauthorized", 401);
+      }
+
       const selectedUser = jsonData.users.find(
         (user) => user.email === args.userEmail
       );
@@ -126,7 +141,7 @@ export const resolvers = {
       const isMatch = password === user.password;
 
       if (!isMatch) {
-        throw new Error("Incorrect password");
+        throw new CustomError("Incorrect password", 401);
       }
 
       const token = generateToken({ id: user.id, email: user.email });
