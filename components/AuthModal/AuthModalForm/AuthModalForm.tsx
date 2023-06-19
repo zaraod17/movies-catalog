@@ -18,9 +18,9 @@ const AuthModalForm: React.FC<{ mode: string }> = ({ mode }) => {
 
   const handleAuthForm = () => {
     if (isLogin) {
+      getToken(email.current?.value, password.current?.value);
       handleLogin(true);
       handleModal(false);
-      getToken(email.current?.value, password.current?.value);
     }
   };
 

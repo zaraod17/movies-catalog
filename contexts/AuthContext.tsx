@@ -1,10 +1,12 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { useLazyQuery, ApolloError } from "@apollo/client";
 import { LOGIN } from "@/utils/api-client-queries";
 
+import { AuthResponseType } from "./AuthContext.types";
+
 interface LoginContextType {
   login: boolean;
-  token: string;
+  token: string | undefined;
   openModal: boolean;
   handleLogin: (value: boolean) => void;
   handleModal: (value: boolean) => void;
@@ -25,14 +27,21 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [login, setLogin] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [token, setToken] = useState<string>("");
+  const [token, setToken] = useState<string | undefined>("");
 
-  const [getToken, { loading, error, data }] = useLazyQuery(LOGIN);
+  const [getToken, { loading, error, data }] = useLazyQuery(LOGIN) as AuthResponseType;
+
+  useEffect(() => {
+    if (data && data.login) {
+      localStorage.setItem('token', data.login.token);
+      setToken(data.login.token);
+    }
+  }, [data]);
 
   const handleLogin = (value: boolean) => {
     setLogin(value);
   };
-
+  
   const handleModal = (value: boolean) => {
     setOpenModal(value);
     console.log(token);
@@ -45,8 +54,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     openModal,
     handleModal,
     getToken: (email, password) => {
-      getToken({ variables: { email, password } });
-      setToken(data.login.token);
+      getToken({ variables: { email: email || "", password: password || "" } });
     },
   };
 
