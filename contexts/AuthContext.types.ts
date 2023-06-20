@@ -1,4 +1,4 @@
-import { LazyQueryHookOptions, QueryResult } from "@apollo/client";
+import { LazyQueryHookOptions } from "@apollo/client";
 
 type LoginResponseType = {
   login: {
@@ -14,3 +14,10 @@ export type AuthResponseType = [
     data?: LoginResponseType;
   }
 ];
+
+export interface TokenPayloadType {
+  email: string;
+  exp: number;
+  iat: number;
+  id: number;
+}

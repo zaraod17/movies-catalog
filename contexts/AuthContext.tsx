@@ -2,11 +2,12 @@ import React, { createContext, useState, useEffect } from "react";
 import { useLazyQuery, ApolloError } from "@apollo/client";
 import { LOGIN } from "@/utils/api-client-queries";
 
-import { AuthResponseType } from "./AuthContext.types";
+import { AuthResponseType, TokenPayloadType } from "./AuthContext.types";
+
+import jwt from "jsonwebtoken";
 
 interface LoginContextType {
   login: boolean;
-  token: string | undefined;
   openModal: boolean;
   handleLogin: (value: boolean) => void;
   handleModal: (value: boolean) => void;
@@ -15,7 +16,6 @@ interface LoginContextType {
 
 export const AuthContext = createContext<LoginContextType>({
   login: false,
-  token: "",
   handleLogin: () => {},
   handleModal: () => {},
   openModal: false,
@@ -27,29 +27,34 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [login, setLogin] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [token, setToken] = useState<string | undefined>("");
+  const [tokenPayload, setTokenPayload] = useState<TokenPayloadType>();
 
-  const [getToken, { loading, error, data }] = useLazyQuery(LOGIN) as AuthResponseType;
+  const [getToken, { loading, error, data }] = useLazyQuery(
+    LOGIN
+  ) as AuthResponseType;
 
   useEffect(() => {
     if (data && data.login) {
-      localStorage.setItem('token', data.login.token);
-      setToken(data.login.token);
+      localStorage.setItem("token", data.login.token);
+
+      const storedToken = localStorage.getItem("token");
+      if (storedToken) {
+        setTokenPayload(jwt.decode(storedToken) as TokenPayloadType);
+      }
     }
   }, [data]);
 
   const handleLogin = (value: boolean) => {
     setLogin(value);
   };
-  
+
   const handleModal = (value: boolean) => {
     setOpenModal(value);
-    console.log(token);
+    console.log(tokenPayload)
   };
 
   const contextValue: LoginContextType = {
     login,
-    token,
     handleLogin,
     openModal,
     handleModal,
