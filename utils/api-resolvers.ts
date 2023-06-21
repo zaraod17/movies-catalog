@@ -138,4 +138,50 @@ export const resolvers = {
       return { token: token ?? "" };
     },
   },
+
+  Mutation: {
+    register: (
+      parent: any,
+      args: { email: string; username: string; password: string },
+      contextValue: any,
+      info: any
+    ) => {
+      const { email, username, password } = args;
+
+      const { users } = jsonData;
+
+      const selectedUser = users.find(
+        (user) => user.email === args.email || user.username === args.username
+      );
+      if (!!selectedUser) {
+        throw new CustomError(
+          "Username or email already exists. Please choose a diffrent one",
+          409
+        );
+      }
+
+      const id = users.length + 1;
+
+      const newUser = {
+        id,
+        username,
+        email,
+        password,
+        favorites: [],
+        myList: [],
+      };
+
+      users.push(newUser);
+
+      fs.writeFileSync(filePath, JSON.stringify(users, null, 2));
+
+      const generatedToken =
+        generateToken({
+          id: newUser.id,
+          email: newUser.email,
+        }) ?? "";
+
+      return { token: generatedToken };
+    },
+  },
 };
