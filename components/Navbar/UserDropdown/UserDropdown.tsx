@@ -12,7 +12,7 @@ import { AuthContext } from "@/contexts/AuthContext";
 const UserDropdown: React.FC = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  const { handleLogin } = useContext(AuthContext);
+  const { handleLogout } = useContext(AuthContext);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElUser(event.currentTarget);
@@ -22,8 +22,8 @@ const UserDropdown: React.FC = () => {
     setAnchorElUser(null);
   };
 
-  const handleLogout = () => {
-    handleLogin(false);
+  const logout = () => {
+    handleLogout();
     setAnchorElUser(null);
   };
 
@@ -50,7 +50,7 @@ const UserDropdown: React.FC = () => {
         <MenuItem onClick={handleCloseUserMenu}>
           <Typography textAlign="center">Account</Typography>
         </MenuItem>
-        <MenuItem onClick={handleLogout}>
+        <MenuItem onClick={logout}>
           <Typography textAlign="center">Logout </Typography>
         </MenuItem>
       </Menu>

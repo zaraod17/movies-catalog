@@ -7,17 +7,15 @@ import { AuthResponseType, TokenPayloadType } from "./AuthContext.types";
 import jwt from "jsonwebtoken";
 
 interface LoginContextType {
-  login: boolean;
   openModal: boolean;
-  handleLogin: (value: boolean) => void;
+  handleLogout: () => void;
   handleModal: (value: boolean) => void;
   getToken: (email: string | undefined, password: string | undefined) => void;
   userInfo: TokenPayloadType;
 }
 
 export const AuthContext = createContext<LoginContextType>({
-  login: false,
-  handleLogin: () => {},
+  handleLogout: () => {},
   handleModal: () => {},
   openModal: false,
   getToken: () => {},
@@ -27,7 +25,6 @@ export const AuthContext = createContext<LoginContextType>({
 export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [login, setLogin] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [tokenPayload, setTokenPayload] = useState<TokenPayloadType>({
     email: "",
@@ -51,8 +48,9 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, [data]);
 
-  const handleLogin = (value: boolean) => {
-    setLogin(value);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setTokenPayload({ email: "", id: 0, exp: 0, iat: 0 });
   };
 
   const handleModal = (value: boolean) => {
@@ -61,8 +59,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const contextValue: LoginContextType = {
-    login,
-    handleLogin,
+    handleLogout,
     openModal,
     handleModal,
     getToken: (email, password) => {

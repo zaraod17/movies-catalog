@@ -18,7 +18,7 @@ import MenuDropdown from "./MenuDropdown/MenuDropdown";
 import AuthModal from "@/components/AuthModal/AuthModal";
 
 const NavBar: React.FC = () => {
-  const { login, openModal, handleModal, userInfo } = useContext(AuthContext);
+  const { openModal, handleModal, userInfo } = useContext(AuthContext);
 
   const handleOpenModal = () => {
     handleModal(true);
@@ -48,7 +48,7 @@ const NavBar: React.FC = () => {
             <SearchField />
           </InputWrapper>
           <AuthModal modalOpen={openModal} onModalClose={handleClose} />
-          {login ? (
+          {userInfo.email ? (
             <UserDropdown />
           ) : (
             <StyledButton

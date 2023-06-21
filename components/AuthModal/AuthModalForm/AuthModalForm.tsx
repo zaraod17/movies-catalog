@@ -12,14 +12,13 @@ const AuthModalForm: React.FC<{ mode: string }> = ({ mode }) => {
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
-  const { handleLogin, handleModal, getToken } = useContext(AuthContext);
+  const { handleModal, getToken } = useContext(AuthContext);
 
   const isLogin = mode === "login";
 
   const handleAuthForm = () => {
     if (isLogin) {
       getToken(email.current?.value, password.current?.value);
-      handleLogin(true);
       handleModal(false);
     }
   };
