@@ -41,7 +41,7 @@ const AuthModalForm: React.FC<{ mode: string }> = ({ mode }) => {
           inputRef={password}
           variant="standard"
           label="Password"
-          type="text"
+          type="password"
         />
       </StyledInputWrapper>
       <Button variant="contained" disableElevation onClick={handleAuthForm}>

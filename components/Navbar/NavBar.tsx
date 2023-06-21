@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 
 import { Typography, Box } from "@mui/material";
 import {
@@ -18,7 +18,7 @@ import MenuDropdown from "./MenuDropdown/MenuDropdown";
 import AuthModal from "@/components/AuthModal/AuthModal";
 
 const NavBar: React.FC = () => {
-  const { login, openModal, handleModal } = useContext(AuthContext);
+  const { login, openModal, handleModal, userInfo } = useContext(AuthContext);
 
   const handleOpenModal = () => {
     handleModal(true);
@@ -37,10 +37,12 @@ const NavBar: React.FC = () => {
             <Typography variant="h6" component="div">
               <StyledLink href="/">MoviesCatalog</StyledLink>
             </Typography>
-            <Box className="links">
-              <StyledLink href="/watchlist">MyList</StyledLink>
-              <StyledLink href="/favorites">Favorites</StyledLink>
-            </Box>
+            {userInfo.email && (
+              <Box className="links">
+                <StyledLink href="/watchlist">MyList</StyledLink>
+                <StyledLink href="/favorites">Favorites</StyledLink>
+              </Box>
+            )}
           </StyledLinks>
           <InputWrapper>
             <SearchField />
@@ -49,7 +51,10 @@ const NavBar: React.FC = () => {
           {login ? (
             <UserDropdown />
           ) : (
-            <StyledButton onClick={handleOpenModal} data-cy="login" className="dupa">
+            <StyledButton
+              onClick={handleOpenModal}
+              data-cy="login"
+            >
               Login
             </StyledButton>
           )}

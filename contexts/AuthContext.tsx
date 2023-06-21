@@ -12,6 +12,7 @@ interface LoginContextType {
   handleLogin: (value: boolean) => void;
   handleModal: (value: boolean) => void;
   getToken: (email: string | undefined, password: string | undefined) => void;
+  userInfo: TokenPayloadType;
 }
 
 export const AuthContext = createContext<LoginContextType>({
@@ -20,6 +21,7 @@ export const AuthContext = createContext<LoginContextType>({
   handleModal: () => {},
   openModal: false,
   getToken: () => {},
+  userInfo: { id: 0, email: "", exp: 0, iat: 0 },
 });
 
 export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -27,7 +29,12 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [login, setLogin] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [tokenPayload, setTokenPayload] = useState<TokenPayloadType>();
+  const [tokenPayload, setTokenPayload] = useState<TokenPayloadType>({
+    email: "",
+    id: 0,
+    exp: 0,
+    iat: 0,
+  });
 
   const [getToken, { loading, error, data }] = useLazyQuery(
     LOGIN
@@ -50,7 +57,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const handleModal = (value: boolean) => {
     setOpenModal(value);
-    console.log(tokenPayload)
+    console.log(tokenPayload);
   };
 
   const contextValue: LoginContextType = {
@@ -61,6 +68,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     getToken: (email, password) => {
       getToken({ variables: { email: email || "", password: password || "" } });
     },
+    userInfo: tokenPayload,
   };
 
   return (
