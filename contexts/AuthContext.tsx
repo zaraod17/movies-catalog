@@ -12,6 +12,7 @@ interface LoginContextType {
   handleModal: (value: boolean) => void;
   getToken: (email: string | undefined, password: string | undefined) => void;
   userInfo: TokenPayloadType;
+  loginError: string;
 }
 
 export const AuthContext = createContext<LoginContextType>({
@@ -20,6 +21,7 @@ export const AuthContext = createContext<LoginContextType>({
   openModal: false,
   getToken: () => {},
   userInfo: { id: 0, email: "", exp: 0, iat: 0 },
+  loginError: "",
 });
 
 export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -32,6 +34,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     exp: 0,
     iat: 0,
   });
+  const [loginError, setLoginError] = useState<string>("");
 
   const [getToken, { loading, error, data }] = useLazyQuery(
     LOGIN
@@ -39,6 +42,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     if (data && data.login) {
+      setLoginError("");
       localStorage.setItem("token", data.login.token);
 
       const storedToken = localStorage.getItem("token");
@@ -46,7 +50,11 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
         setTokenPayload(jwt.decode(storedToken) as TokenPayloadType);
       }
     }
-  }, [data]);
+
+    if (error) {
+      setLoginError(error.message);
+    }
+  }, [data, error]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -66,6 +74,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
       getToken({ variables: { email: email || "", password: password || "" } });
     },
     userInfo: tokenPayload,
+    loginError,
   };
 
   return (

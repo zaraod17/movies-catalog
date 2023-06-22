@@ -1,6 +1,6 @@
 import { useRef, useContext } from "react";
 
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 
 import PersonIcon from "@mui/icons-material/Person";
 import PasswordIcon from "@mui/icons-material/Password";
@@ -12,13 +12,16 @@ const AuthModalForm: React.FC<{ mode: string }> = ({ mode }) => {
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
-  const { handleModal, getToken } = useContext(AuthContext);
+  const { handleModal, getToken, loginError } = useContext(AuthContext);
 
   const isLogin = mode === "login";
 
   const handleAuthForm = () => {
     if (isLogin) {
       getToken(email.current?.value, password.current?.value);
+      if (loginError) {
+        return;
+      }
       handleModal(false);
     }
   };
@@ -43,6 +46,11 @@ const AuthModalForm: React.FC<{ mode: string }> = ({ mode }) => {
           type="password"
         />
       </StyledInputWrapper>
+      {loginError && (
+        <Typography component="span" variant="caption">
+          {loginError}
+        </Typography>
+      )}
       <Button variant="contained" disableElevation onClick={handleAuthForm}>
         {isLogin ? "Login" : "Create account"}
       </Button>

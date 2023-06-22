@@ -1,4 +1,4 @@
-import { LazyQueryHookOptions } from "@apollo/client";
+import { LazyQueryHookOptions, ApolloError } from "@apollo/client";
 
 type LoginResponseType = {
   login: {
@@ -10,7 +10,7 @@ export type AuthResponseType = [
   getToken: (options?: LazyQueryHookOptions) => void,
   result: {
     loading: boolean;
-    error?: any;
+    error?: ApolloError | undefined;
     data?: LoginResponseType;
   }
 ];
