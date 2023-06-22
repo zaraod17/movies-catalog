@@ -148,9 +148,7 @@ export const resolvers = {
     ) => {
       const { email, username, password } = args;
 
-      const { users } = jsonData;
-
-      const selectedUser = users.find(
+      const selectedUser = jsonData.users.find(
         (user) => user.email === args.email || user.username === args.username
       );
       if (!!selectedUser) {
@@ -160,7 +158,7 @@ export const resolvers = {
         );
       }
 
-      const id = users.length + 1;
+      const id = jsonData.users.length + 1;
 
       const newUser = {
         id,
@@ -171,9 +169,9 @@ export const resolvers = {
         myList: [],
       };
 
-      users.push(newUser);
+      jsonData.users.push(newUser);
 
-      fs.writeFileSync(filePath, JSON.stringify(users, null, 2));
+      fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
 
       const generatedToken =
         generateToken({
