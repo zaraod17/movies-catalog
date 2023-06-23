@@ -16,10 +16,7 @@
         "Bob Gunton",
         "William Sadler"
       ],
-      "categories": [
-        "drama",
-        "crime"
-      ],
+      "categories": ["drama", "crime"],
       "views": 2137
     },
     {
@@ -38,10 +35,7 @@
         "Robert Duvall",
         "Diane Keaton"
       ],
-      "categories": [
-        "crime",
-        "drama"
-      ],
+      "categories": ["crime", "drama"],
       "views": 3124
     },
     {
@@ -60,10 +54,7 @@
         "Michael Caine",
         "Maggie Gyllenhaal"
       ],
-      "categories": [
-        "action",
-        "crime"
-      ],
+      "categories": ["action", "crime"],
       "views": 4521
     },
     {
@@ -82,10 +73,7 @@
         "Bruce Willis",
         "Harvey Keitel"
       ],
-      "categories": [
-        "crime",
-        "drama"
-      ],
+      "categories": ["crime", "drama"],
       "views": 2956
     },
     {
@@ -104,10 +92,7 @@
         "Sean Astin",
         "Orlando Bloom"
       ],
-      "categories": [
-        "adventure",
-        "fantasy"
-      ],
+      "categories": ["adventure", "fantasy"],
       "views": 5178
     },
     {
@@ -126,10 +111,7 @@
         "Hugo Weaving",
         "Joe Pantoliano"
       ],
-      "categories": [
-        "action",
-        "sci-fi"
-      ],
+      "categories": ["action", "sci-fi"],
       "views": 6234
     },
     {
@@ -148,9 +130,7 @@
         "Meat Loaf",
         "Jared Leto"
       ],
-      "categories": [
-        "drama"
-      ],
+      "categories": ["drama"],
       "views": 4276
     },
     {
@@ -169,10 +149,7 @@
         "Sally Field",
         "Haley Joel Osment"
       ],
-      "categories": [
-        "drama",
-        "romance"
-      ],
+      "categories": ["drama", "romance"],
       "views": 5783
     },
     {
@@ -191,10 +168,7 @@
         "Chris Hemsworth",
         "Scarlett Johansson"
       ],
-      "categories": [
-        "action",
-        "adventure"
-      ],
+      "categories": ["action", "adventure"],
       "views": 6391
     },
     {
@@ -213,10 +187,7 @@
         "Robert Duvall",
         "Diane Keaton"
       ],
-      "categories": [
-        "crime",
-        "drama"
-      ],
+      "categories": ["crime", "drama"],
       "views": 5214
     },
     {
@@ -235,10 +206,7 @@
         "Michael Caine",
         "Mackenzie Foy"
       ],
-      "categories": [
-        "adventure",
-        "sci-fi"
-      ],
+      "categories": ["adventure", "sci-fi"],
       "views": 4925
     },
     {
@@ -257,10 +225,7 @@
         "Nathan Lane",
         "Moira Kelly"
       ],
-      "categories": [
-        "animation",
-        "adventure"
-      ],
+      "categories": ["animation", "adventure"],
       "views": 5763
     },
     {
@@ -279,10 +244,7 @@
         "Gary Oldman",
         "Michael Caine"
       ],
-      "categories": [
-        "action",
-        "thriller"
-      ],
+      "categories": ["action", "thriller"],
       "views": 4351
     },
     {
@@ -301,10 +263,7 @@
         "Bob Gunton",
         "William Sadler"
       ],
-      "categories": [
-        "drama",
-        "crime"
-      ],
+      "categories": ["drama", "crime"],
       "views": 2137
     },
     {
@@ -323,10 +282,7 @@
         "Bruce Willis",
         "Harvey Keitel"
       ],
-      "categories": [
-        "crime",
-        "drama"
-      ],
+      "categories": ["crime", "drama"],
       "views": 2956
     },
     {
@@ -345,10 +301,7 @@
         "Tom Hardy",
         "Ken Watanabe"
       ],
-      "categories": [
-        "action",
-        "sci-fi"
-      ],
+      "categories": ["action", "sci-fi"],
       "views": 5243
     },
     {
@@ -367,10 +320,7 @@
         "Ted Levine",
         "Anthony Heald"
       ],
-      "categories": [
-        "crime",
-        "thriller"
-      ],
+      "categories": ["crime", "thriller"],
       "views": 4265
     },
     {
@@ -389,10 +339,7 @@
         "Mark Wahlberg",
         "Martin Sheen"
       ],
-      "categories": [
-        "crime",
-        "drama"
-      ],
+      "categories": ["crime", "drama"],
       "views": 5872
     },
     {
@@ -411,10 +358,7 @@
         "Scarlett Johansson",
         "Rebecca Hall"
       ],
-      "categories": [
-        "drama",
-        "mystery"
-      ],
+      "categories": ["drama", "mystery"],
       "views": 3967
     },
     {
@@ -433,10 +377,7 @@
         "Hugo Weaving",
         "Joe Pantoliano"
       ],
-      "categories": [
-        "action",
-        "sci-fi"
-      ],
+      "categories": ["action", "sci-fi"],
       "views": 6123
     },
     {
@@ -455,10 +396,7 @@
         "Scarlett Johansson",
         "Mark Ruffalo"
       ],
-      "categories": [
-        "action",
-        "adventure"
-      ],
+      "categories": ["action", "adventure"],
       "views": 8000
     },
     {
@@ -477,11 +415,7 @@
         "Sam Neill",
         "Laura Dern"
       ],
-      "categories": [
-        "action",
-        "adventure",
-        "sci-fi"
-      ],
+      "categories": ["action", "adventure", "sci-fi"],
       "views": 4000
     },
     {
@@ -500,11 +434,7 @@
         "Rebecca Ferguson",
         "Henry Czerny"
       ],
-      "categories": [
-        "action",
-        "spy",
-        "thriller"
-      ],
+      "categories": ["action", "spy", "thriller"],
       "views": 3200
     },
     {
@@ -523,10 +453,7 @@
         "Martin Freeman",
         "Lupita Nyong'o"
       ],
-      "categories": [
-        "action",
-        "adventure"
-      ],
+      "categories": ["action", "adventure"],
       "views": 5500
     },
     {
@@ -545,10 +472,7 @@
         "Alison Sudol",
         "Jude Law"
       ],
-      "categories": [
-        "fantasy",
-        "adventure"
-      ],
+      "categories": ["fantasy", "adventure"],
       "views": 2800
     },
     {
@@ -567,10 +491,7 @@
         "Kiersey Clemons",
         "Sasha Calle"
       ],
-      "categories": [
-        "action",
-        "superhero"
-      ],
+      "categories": ["action", "superhero"],
       "views": 6100
     },
     {
@@ -589,11 +510,7 @@
         "Lashana Lynch",
         "Ben Whishaw"
       ],
-      "categories": [
-        "action",
-        "spy",
-        "thriller"
-      ],
+      "categories": ["action", "spy", "thriller"],
       "views": 5700
     },
     {
@@ -612,11 +529,7 @@
         "Rachel McAdams",
         "Benedict Wong"
       ],
-      "categories": [
-        "action",
-        "adventure",
-        "fantasy"
-      ],
+      "categories": ["action", "adventure", "fantasy"],
       "views": 4900
     },
     {
@@ -635,10 +548,7 @@
         "Tom Hardy",
         "Ken Watanabe"
       ],
-      "categories": [
-        "action",
-        "sci-fi"
-      ],
+      "categories": ["action", "sci-fi"],
       "views": 3789
     }
   ],
@@ -726,14 +636,6 @@
           "movieId": 19
         }
       ]
-    },
-    {
-      "id": 3,
-      "username": "fmlksdmf",
-      "email": "user2137@sdmfks.com",
-      "password": "sdfkmkdsf",
-      "favorites": [],
-      "myList": []
     }
   ]
 }

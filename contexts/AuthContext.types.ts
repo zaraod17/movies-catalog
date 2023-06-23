@@ -1,10 +1,19 @@
-import { LazyQueryHookOptions, ApolloError } from "@apollo/client";
+import { LazyQueryHookOptions, MutationHookOptions, ApolloError } from "@apollo/client";
 
 type LoginResponseType = {
   login: {
     token: string;
   };
 };
+
+export type RegisterResponseType = [
+  registerUser: (options?: MutationHookOptions) => void,
+  result: {
+    loading: boolean;
+    error?: ApolloError | undefined;
+    data?: { register: { token: string } };
+  }
+];
 
 export type AuthResponseType = [
   getToken: (options?: LazyQueryHookOptions) => void,

@@ -122,10 +122,10 @@ export const resolvers = {
       const user = jsonData.users.find((user) => user.email === email);
 
       if (!user) {
-        throw new Error("User not found");
+        throw new CustomError("User not found", 401);
       }
 
-      const hashedPassword = await hashPassword(password);
+      // const hashedPassword = await hashPassword(password);
 
       const isMatch = password === user.password;
 
@@ -149,9 +149,9 @@ export const resolvers = {
       const { email, username, password } = args;
 
       const selectedUser = jsonData.users.find(
-        (user) => user.email === args.email || user.username === args.username
+        (user) => user.email === email || user.username === username
       );
-      if (!!selectedUser) {
+      if (selectedUser) {
         throw new CustomError(
           "Username or email already exists. Please choose a diffrent one",
           409
@@ -173,13 +173,12 @@ export const resolvers = {
 
       fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
 
-      const generatedToken =
-        generateToken({
-          id: newUser.id,
-          email: newUser.email,
-        }) ?? "";
+      const generatedToken = generateToken({
+        id: newUser.id,
+        email: newUser.email,
+      });
 
-      return { token: generatedToken };
+      return { token: generatedToken ?? "" };
     },
   },
 };

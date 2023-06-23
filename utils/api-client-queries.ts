@@ -51,3 +51,11 @@ export const LOGIN = gql`
     }
   }
 `;
+
+export const REGISTER = gql`
+  mutation Mutation($email: String!, $username: String!, $password: String!) {
+    register(email: $email, username: $username, password: $password) {
+      token
+    }
+  }
+`;

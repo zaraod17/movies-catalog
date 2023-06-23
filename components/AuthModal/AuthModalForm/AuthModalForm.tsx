@@ -10,19 +10,22 @@ import { AuthContext } from "@/contexts/AuthContext";
 
 const AuthModalForm: React.FC<{ mode: string }> = ({ mode }) => {
   const email = useRef<HTMLInputElement>(null);
+  const username = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
-  const { handleModal, getToken, loginError } = useContext(AuthContext);
+  const { getToken, loginError, registerUser } = useContext(AuthContext);
 
   const isLogin = mode === "login";
 
   const handleAuthForm = () => {
-    if (isLogin) {
+    if (mode === "login") {
       getToken(email.current?.value, password.current?.value);
-      if (loginError) {
-        return;
-      }
-      handleModal(false);
+    } else if (mode === "signup") {
+      registerUser(
+        email.current?.value,
+        username.current?.value,
+        password.current?.value
+      );
     }
   };
 
@@ -37,6 +40,18 @@ const AuthModalForm: React.FC<{ mode: string }> = ({ mode }) => {
           type="text"
         />
       </StyledInputWrapper>
+
+      {mode === "signup" && (
+        <StyledInputWrapper>
+          <PersonIcon />
+          <TextField
+            inputRef={username}
+            variant="standard"
+            label="Username"
+            type="text"
+          />
+        </StyledInputWrapper>
+      )}
       <StyledInputWrapper>
         <PasswordIcon />
         <TextField
