@@ -163,14 +163,36 @@ export const resolvers = {
       const selectedUser = jsonData.users.find(
         (user) => user.email === email || user.username === username
       );
+
       if (selectedUser) {
         throw new CustomError(
-          "Username or email already exists. Please choose a diffrent one",
+          "Username or email already exists.",
           {
             code: "FORBIDDEN",
             http: { status: 409 },
           }
         );
+      }
+
+      if (!email) {
+        throw new CustomError("Please provide an email", {
+          code: "BAD_REQUEST",
+          http: { status: 400 },
+        });
+      }
+
+      if (!username) {
+        throw new CustomError("Please provide a username", {
+          code: "BAD_REQUEST",
+          http: { status: 400 },
+        });
+      }
+
+      if (!password) {
+        throw new CustomError("Please provide a password", {
+          code: "BAD_REQUEST",
+          http: { status: 400 },
+        });
       }
 
       const id = jsonData.users.length + 1;

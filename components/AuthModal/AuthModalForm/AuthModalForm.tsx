@@ -37,7 +37,7 @@ const AuthModalForm: React.FC<{ mode: string }> = ({ mode }) => {
           inputRef={email}
           variant="standard"
           label="Email"
-          type="text"
+          type="email"
         />
       </StyledInputWrapper>
 
