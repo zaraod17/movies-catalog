@@ -46,17 +46,11 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
   });
   const [loginError, setLoginError] = useState<string>("");
 
-  const [getToken, { loading, error, data }] = useLazyQuery(
-    LOGIN
-  ) as AuthResponseType;
-
-  const [
-    registerUser,
-    { loading: loadingRegister, error: registerError, data: registerData },
-  ] = useMutation(REGISTER) as RegisterResponseType;
-
-  useEffect(() => {
-    if (data && data.login) {
+  const [getToken, { loading, error, data }] = useLazyQuery(LOGIN, {
+    onError: (error) => {
+      setLoginError(error.message);
+    },
+    onCompleted: (data) => {
       setLoginError("");
       localStorage.setItem("token", data.login.token);
       handleModal(false);
@@ -65,27 +59,27 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
       if (storedToken) {
         setTokenPayload(jwt.decode(storedToken) as TokenPayloadType);
       }
-    }
+    },
+  }) as AuthResponseType;
 
-    if (registerData && registerData.register) {
+  const [
+    registerUser,
+    { loading: loadingRegister, error: registerError, data: registerData },
+  ] = useMutation(REGISTER, {
+    onError: (error) => {
+      setLoginError(error.message);
+    },
+    onCompleted: (data) => {
       setLoginError("");
-      localStorage.setItem("token", registerData.register.token);
+      localStorage.setItem("token", data.register.token);
       handleModal(false);
 
       const storedToken = localStorage.getItem("token");
       if (storedToken) {
         setTokenPayload(jwt.decode(storedToken) as TokenPayloadType);
       }
-    }
-
-    if (error && error.message) {
-      setLoginError(error.message);
-    }
-
-    if (registerError && registerError.message) { // TODO: figure out why it thows generic error when user is already registered 
-      setLoginError(registerError.message);
-    }
-  }, [data, error, registerData, registerError]);
+    },
+  }) as RegisterResponseType;
 
   const handleLogout = () => {
     localStorage.removeItem("token");

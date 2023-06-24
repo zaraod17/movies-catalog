@@ -75,7 +75,10 @@ export const resolvers = {
       info: any
     ) => {
       if (!contextValue.user) {
-        throw new CustomError("Unauthorized", 401);
+        throw new CustomError("Unauthorized", {
+          code: "UNAUTHENTICATED",
+          http: { status: 401 },
+        });
       }
 
       const selectedUser = jsonData.users.find(
@@ -99,7 +102,10 @@ export const resolvers = {
       info: any
     ) => {
       if (!contextValue.user) {
-        throw new CustomError("Unauthorized", 401);
+        throw new CustomError("Unauthorized", {
+          code: "UNAUTHENTICATED",
+          http: { status: 401 },
+        });
       }
 
       const selectedUser = jsonData.users.find(
@@ -122,7 +128,10 @@ export const resolvers = {
       const user = jsonData.users.find((user) => user.email === email);
 
       if (!user) {
-        throw new CustomError("User not found", 401);
+        throw new CustomError("User not found", {
+          code: "UNAUTHENTICATED",
+          http: { status: 401 },
+        });
       }
 
       // const hashedPassword = await hashPassword(password);
@@ -130,7 +139,10 @@ export const resolvers = {
       const isMatch = password === user.password;
 
       if (!isMatch) {
-        throw new CustomError("Incorrect password", 401);
+        throw new CustomError("Wrong password", {
+          code: "UNAUTHENTICATED",
+          http: { status: 401 },
+        });
       }
 
       const token = generateToken({ id: user.id, email: user.email });
@@ -154,7 +166,10 @@ export const resolvers = {
       if (selectedUser) {
         throw new CustomError(
           "Username or email already exists. Please choose a diffrent one",
-          409
+          {
+            code: "FORBIDDEN",
+            http: { status: 409 },
+          }
         );
       }
 

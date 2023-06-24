@@ -1,4 +1,8 @@
-import { LazyQueryHookOptions, MutationHookOptions, ApolloError } from "@apollo/client";
+import {
+  LazyQueryHookOptions,
+  MutationHookOptions,
+  ApolloError,
+} from "@apollo/client";
 
 type LoginResponseType = {
   login: {
