@@ -46,6 +46,19 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
   });
   const [loginError, setLoginError] = useState<string>("");
 
+  useEffect(() => {
+    const token = localStorage.getItem("token") ?? "";
+    const decodedToken: TokenPayloadType | null = token
+      ? (jwt.decode(token) as TokenPayloadType)
+      : null;
+
+    const timeInMilisecs = new Date().getMilliseconds();
+
+    if (token || decodedToken?.exp! < timeInMilisecs) {
+      setTokenPayload(jwt.decode(token) as TokenPayloadType);
+    }
+  }, []);
+
   const [getToken, { loading, error, data }] = useLazyQuery(LOGIN, {
     onError: (error) => {
       setLoginError(error.message);
@@ -83,14 +96,13 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    console.log(tokenPayload);
     setTokenPayload({ email: "", id: 0, exp: 0, iat: 0 });
   };
 
   const handleModal = (value: boolean) => {
     setOpenModal(value);
     setLoginError("");
-    console.log(tokenPayload);
-    console.log(registerError);
   };
 
   const contextValue: LoginContextType = {
