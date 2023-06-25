@@ -38,7 +38,6 @@
       "categories": ["crime", "drama"],
       "views": 3124
     },
-
     {
       "id": 3,
       "title": "The Dark Knight",
@@ -559,19 +558,41 @@
       "username": "user",
       "password": "user123",
       "favorites": [
-        { "movieId": 1 },
-        { "movieId": 2 },
-        { "movieId": 3 },
-        { "movieId": 4 },
-        { "movieId": 30 }
+        {
+          "movieId": 1
+        },
+        {
+          "movieId": 2
+        },
+        {
+          "movieId": 3
+        },
+        {
+          "movieId": 4
+        },
+        {
+          "movieId": 30
+        }
       ],
       "myList": [
-        { "movieId": 1 },
-        { "movieId": 30 },
-        { "movieId": 6 },
-        { "movieId": 8 },
-        { "movieId": 10 },
-        { "movieId": 15 }
+        {
+          "movieId": 1
+        },
+        {
+          "movieId": 30
+        },
+        {
+          "movieId": 6
+        },
+        {
+          "movieId": 8
+        },
+        {
+          "movieId": 10
+        },
+        {
+          "movieId": 15
+        }
       ]
     },
     {
@@ -579,20 +600,50 @@
       "username": "user1",
       "password": "password123",
       "favorites": [
-        { "movieId": 13 },
-        { "movieId": 25 },
-        { "movieId": 13 },
-        { "movieId": 14 },
-        { "movieId": 15 }
+        {
+          "movieId": 13
+        },
+        {
+          "movieId": 25
+        },
+        {
+          "movieId": 13
+        },
+        {
+          "movieId": 14
+        },
+        {
+          "movieId": 15
+        }
       ],
       "myList": [
-        { "movieId": 12 },
-        { "movieId": 12 },
-        { "movieId": 16 },
-        { "movieId": 18 },
-        { "movieId": 17 },
-        { "movieId": 19 }
+        {
+          "movieId": 12
+        },
+        {
+          "movieId": 12
+        },
+        {
+          "movieId": 16
+        },
+        {
+          "movieId": 18
+        },
+        {
+          "movieId": 17
+        },
+        {
+          "movieId": 19
+        }
       ]
+    },
+    {
+      "id": 3,
+      "username": "fmlksdmf",
+      "email": "username@user.com",
+      "password": "sdfkmkdsf",
+      "favorites": [],
+      "myList": []
     }
   ]
 }

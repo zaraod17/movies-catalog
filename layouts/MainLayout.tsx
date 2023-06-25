@@ -6,12 +6,10 @@ import NavBar from "@/components/Navbar/NavBar";
 
 const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <>
-      <AuthContextProvider>
-        <NavBar />
-      </AuthContextProvider>
+    <AuthContextProvider>
+      <NavBar />
       <main>{children}</main>
-    </>
+    </AuthContextProvider>
   );
 };
 

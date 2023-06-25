@@ -2,12 +2,20 @@ import { gql } from "apollo-server-micro";
 
 export const typeDefs = gql`
   type Query {
-    hello: String
     movies: [Movie]
     moviesList(category: String): [Movie]
     singleMovie(id: ID!): Movie
     userFavoriteMovies(userEmail: String): [Movie]
     userMoviesList(userEmail: String): [Movie]
+    login(email: String!, password: String!): AuthPayload!
+  }
+
+  type Mutation {
+    register(email: String!, username: String!, password: String!): AuthPayload!
+  }
+
+  type AuthPayload {
+    token: String!
   }
 
   type Movie {

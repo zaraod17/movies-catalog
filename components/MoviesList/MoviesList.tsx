@@ -4,19 +4,21 @@ import { useQuery } from "@apollo/client";
 import { StyledListWrapper, StyledLink } from "./MoviesList.styled";
 import MoviesListElement from "./MoviesListElement/MoviesListElement";
 
-import { DUMMY_MOVIES } from "@/data/dummy-data";
 import { ListTitleType } from "@/components/MainPageLists/MainPageList.types";
-import { GET_MOVIES_LIST } from "@/utils/ApiClientQueries";
-import {MovieDataType} from './MoviesList.types'
+import { GET_MOVIES_LIST } from "@/utils/api-client-queries";
+import { MovieDataType } from "./MoviesList.types";
 
 const MoviesList: React.FC<{ listTitle: ListTitleType }> = ({ listTitle }) => {
   const {
     loading,
     error,
     data,
-  }: { loading: boolean; error?: any; data?: MovieDataType } = useQuery(GET_MOVIES_LIST, {
-    variables: { category: listTitle },
-  });
+  }: { loading: boolean; error?: any; data?: MovieDataType } = useQuery(
+    GET_MOVIES_LIST,
+    {
+      variables: { category: listTitle },
+    }
+  );
 
   if (loading) {
     return <CircularProgress />;
