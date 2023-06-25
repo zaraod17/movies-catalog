@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useLazyQuery, useMutation, ApolloError } from "@apollo/client";
-import { LOGIN, REGISTER } from "@/utils/api-client-queries";
+import { LOGIN, REGISTER } from "@/utils/api/api-client-queries";
 
 import {
   AuthResponseType,

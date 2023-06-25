@@ -5,7 +5,7 @@ import { StyledListWrapper, StyledLink } from "./MoviesList.styled";
 import MoviesListElement from "./MoviesListElement/MoviesListElement";
 
 import { ListTitleType } from "@/components/MainPageLists/MainPageList.types";
-import { GET_MOVIES_LIST } from "@/utils/api-client-queries";
+import { GET_MOVIES_LIST } from "@/utils/api/api-client-queries";
 import { MovieDataType } from "./MoviesList.types";
 
 const MoviesList: React.FC<{ listTitle: ListTitleType }> = ({ listTitle }) => {

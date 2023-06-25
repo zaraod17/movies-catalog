@@ -6,9 +6,9 @@ import {
   comparePassword,
   generateToken,
   hashPassword,
-} from "./auth";
+} from "../auth";
 
-import { User } from "./auth-types";
+import { User } from "../auth-types";
 import CustomError from "@/models/custom-error";
 
 import { JsonData } from "./resolver-types";
@@ -149,8 +149,27 @@ export const resolvers = {
 
       return { token: token ?? "" };
     },
-  },
 
+    loggedUser: (
+      parent: any,
+      args: { email: string },
+      contextValue: any,
+      info: any
+    ) => {
+      if (!contextValue.user) {
+        throw new CustomError("Unauthorized", {
+          code: "UNAUTHENTICATED",
+          http: { status: 401 },
+        });
+      }
+
+      const loggedUser = jsonData.users.find(
+        (user) => user.email === args.email
+      );
+
+      return loggedUser;
+    },
+  },
   Mutation: {
     register: (
       parent: any,
@@ -165,13 +184,10 @@ export const resolvers = {
       );
 
       if (selectedUser) {
-        throw new CustomError(
-          "Username or email already exists.",
-          {
-            code: "FORBIDDEN",
-            http: { status: 409 },
-          }
-        );
+        throw new CustomError("Username or email already exists.", {
+          code: "FORBIDDEN",
+          http: { status: 409 },
+        });
       }
 
       if (!email) {
