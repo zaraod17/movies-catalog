@@ -52,10 +52,12 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
       ? (jwt.decode(token) as TokenPayloadType)
       : null;
 
-    const timeInMilisecs = new Date().getMilliseconds();
+    const timeInMilisecs = new Date().getTime();
 
-    if (token || decodedToken?.exp! < timeInMilisecs) {
+    if (decodedToken?.exp! > timeInMilisecs) {
       setTokenPayload(jwt.decode(token) as TokenPayloadType);
+    } else {
+      localStorage.removeItem("token");
     }
   }, []);
 
