@@ -53,12 +53,14 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
       : null;
 
     const timeInMilisecs = new Date().getTime();
+    const expirationTimeInMilisecs = (decodedToken?.exp ?? 0) * 1000;
 
-    if (decodedToken?.exp! > timeInMilisecs) {
+    if (expirationTimeInMilisecs > timeInMilisecs) {
       setTokenPayload(jwt.decode(token) as TokenPayloadType);
-    } else {
-      localStorage.removeItem("token");
     }
+    console.log(decodedToken?.exp);
+    console.log(timeInMilisecs);
+    console.log(token)
   }, []);
 
   const [getToken, { loading, error, data }] = useLazyQuery(LOGIN, {
