@@ -19,12 +19,8 @@ export const typeDefs = gql`
     id: String
     email: String
     username: String
-    favorites: [MovieId]
-    myList: [MovieId]
-  }
-
-  type MovieId {
-    movieId: Int
+    favorites: [Movie]
+    myList: [Movie]
   }
 
   type AuthPayload {

@@ -9,7 +9,7 @@ const UserDetails: React.FC = () => {
   return (
     <StyledUserDetailsWrapper>
       <UserInfo />
-      <MoviesList listTitle="User favorite movies" />
+      {/* <MoviesList listTitle="User favorite movies" /> */}
     </StyledUserDetailsWrapper>
   );
 };

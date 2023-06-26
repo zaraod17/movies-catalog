@@ -167,7 +167,35 @@ export const resolvers = {
         (user) => user.email === args.email
       );
 
-      return loggedUser;
+      const userFavoriteMovies = new Set(
+        loggedUser?.favorites.map((movie) => movie.movieId)
+      );
+      const userListMovies = new Set(
+        loggedUser?.myList.map((movie) => movie.movieId)
+      );
+
+      let favorites = [];
+      let userList = [];
+
+      for (const movie of jsonData.movies) {
+        if (userFavoriteMovies.has(movie.id)) {
+          favorites.push(movie);
+        }
+
+        if (userListMovies.has(movie.id)) {
+          userList.push(movie);
+        }
+      }
+
+      const newLoggedUser = {
+        id: loggedUser?.id,
+        email: loggedUser?.email,
+        username: loggedUser?.username,
+        favorites: favorites,
+        myList: userList,
+      };
+
+      return newLoggedUser;
     },
   },
   Mutation: {
