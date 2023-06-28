@@ -22,6 +22,7 @@ interface LoginContextType {
   ) => void;
   userInfo: TokenPayloadType;
   loginError: string;
+  token: string;
 }
 
 export const AuthContext = createContext<LoginContextType>({
@@ -32,6 +33,7 @@ export const AuthContext = createContext<LoginContextType>({
   registerUser: () => {},
   userInfo: { id: 0, email: "", exp: 0, iat: 0 },
   loginError: "",
+  token: "",
 });
 
 export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -45,6 +47,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     iat: 0,
   });
   const [loginError, setLoginError] = useState<string>("");
+  const [token, setToken] = useState<string>("");
 
   useEffect(() => {
     const token = localStorage.getItem("token") ?? "";
@@ -57,6 +60,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
     if (expirationTimeInMilisecs > timeInMilisecs) {
       setTokenPayload(jwt.decode(token) as TokenPayloadType);
+      setToken(token);
     } else {
       localStorage.removeItem("token");
     }
@@ -74,6 +78,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
       const storedToken = localStorage.getItem("token");
       if (storedToken) {
         setTokenPayload(jwt.decode(storedToken) as TokenPayloadType);
+        setToken("token");
       }
     },
   }) as AuthResponseType;
@@ -101,6 +106,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("token");
     console.log(tokenPayload);
     setTokenPayload({ email: "", id: 0, exp: 0, iat: 0 });
+    setToken(token);
   };
 
   const handleModal = (value: boolean) => {
@@ -120,6 +126,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
       registerUser({ variables: { email, username, password } });
     },
     loginError,
+    token,
   };
 
   return (

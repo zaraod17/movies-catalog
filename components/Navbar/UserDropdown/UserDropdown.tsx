@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import Link from "next/link";
 import {
   Menu,
   Tooltip,
@@ -47,9 +48,11 @@ const UserDropdown: React.FC = () => {
         open={!!anchorElUser}
         onClose={handleCloseUserMenu}
       >
-        <MenuItem onClick={handleCloseUserMenu}>
-          <Typography textAlign="center">Account</Typography>
-        </MenuItem>
+        <Link href="/user-details">
+          <MenuItem onClick={handleCloseUserMenu}>
+            <Typography textAlign="center">Account</Typography>
+          </MenuItem>
+        </Link>
         <MenuItem onClick={logout}>
           <Typography textAlign="center">Logout </Typography>
         </MenuItem>

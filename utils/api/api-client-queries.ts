@@ -59,3 +59,19 @@ export const REGISTER = gql`
     }
   }
 `;
+
+export const USER_INFO = gql`
+  query Query($email: String!) {
+    loggedUser(email: $email) {
+      id
+      email
+      username
+      favorites {
+        title
+      }
+      myList {
+        title
+      }
+    }
+  }
+`;
