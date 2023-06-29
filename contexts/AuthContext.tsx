@@ -50,23 +50,23 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState<string>("");
 
   useEffect(() => {
-    const token = localStorage.getItem("token") ?? "";
+    const storedToken = localStorage.getItem("token") ?? "";
     const decodedToken: TokenPayloadType | null = token
-      ? (jwt.decode(token) as TokenPayloadType)
+      ? (jwt.decode(storedToken) as TokenPayloadType)
       : null;
 
     const timeInMilisecs = new Date().getTime();
     const expirationTimeInMilisecs = (decodedToken?.exp ?? 0) * 1000;
 
     if (expirationTimeInMilisecs > timeInMilisecs) {
-      setTokenPayload(jwt.decode(token) as TokenPayloadType);
-      setToken(token);
+      setTokenPayload(decodedToken!);
+      setToken(storedToken);
     } else {
       localStorage.removeItem("token");
     }
   }, []);
 
-  const [getToken, { loading, error, data }] = useLazyQuery(LOGIN, {
+  const [getToken] = useLazyQuery(LOGIN, {
     onError: (error) => {
       setLoginError(error.message);
     },
@@ -75,18 +75,12 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
       localStorage.setItem("token", data.login.token);
       handleModal(false);
 
-      const storedToken = localStorage.getItem("token");
-      if (storedToken) {
-        setTokenPayload(jwt.decode(storedToken) as TokenPayloadType);
-        setToken("token");
-      }
+      setTokenPayload(jwt.decode(data.login.token) as TokenPayloadType);
+      setToken(data.login.token);
     },
   }) as AuthResponseType;
 
-  const [
-    registerUser,
-    { loading: loadingRegister, error: registerError, data: registerData },
-  ] = useMutation(REGISTER, {
+  const [registerUser] = useMutation(REGISTER, {
     onError: (error) => {
       setLoginError(error.message);
     },
@@ -98,15 +92,16 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
       const storedToken = localStorage.getItem("token");
       if (storedToken) {
         setTokenPayload(jwt.decode(storedToken) as TokenPayloadType);
+        setToken(storedToken);
       }
     },
   }) as RegisterResponseType;
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    console.log(tokenPayload);
     setTokenPayload({ email: "", id: 0, exp: 0, iat: 0 });
-    setToken(token);
+    setToken("");
+    console.log(tokenPayload);
   };
 
   const handleModal = (value: boolean) => {
