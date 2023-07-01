@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { useLazyQuery, useMutation, ApolloError } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { LOGIN, REGISTER } from "@/utils/api/api-client-queries";
 
 import {
@@ -14,7 +14,10 @@ interface LoginContextType {
   openModal: boolean;
   handleLogout: () => void;
   handleModal: (value: boolean) => void;
-  getToken: (email: string | undefined, password: string | undefined) => void;
+  handleLogin: (
+    email: string | undefined,
+    password: string | undefined
+  ) => void;
   registerUser: (
     email: string | undefined,
     username: string | undefined,
@@ -29,7 +32,7 @@ export const AuthContext = createContext<LoginContextType>({
   handleLogout: () => {},
   handleModal: () => {},
   openModal: false,
-  getToken: () => {},
+  handleLogin: () => {},
   registerUser: () => {},
   userInfo: { id: 0, email: "", exp: 0, iat: 0 },
   loginError: "",
@@ -49,36 +52,12 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const [loginError, setLoginError] = useState<string>("");
   const [token, setToken] = useState<string>("");
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token") ?? "";
-    const decodedToken: TokenPayloadType | null = token
-      ? (jwt.decode(storedToken) as TokenPayloadType)
-      : null;
-
-    const timeInMilisecs = new Date().getTime();
-    const expirationTimeInMilisecs = (decodedToken?.exp ?? 0) * 1000;
-
-    if (expirationTimeInMilisecs > timeInMilisecs) {
-      setTokenPayload(decodedToken!);
-      setToken(storedToken);
-    } else {
-      localStorage.removeItem("token");
-    }
-  }, []);
-
-  const [getToken] = useLazyQuery(LOGIN, {
+  const [getToken, { data,  }] = useLazyQuery(LOGIN, {
+    fetchPolicy: "no-cache",
     onError: (error) => {
       setLoginError(error.message);
     },
-    onCompleted: (data) => {
-      setLoginError("");
-      localStorage.setItem("token", data.login.token);
-      handleModal(false);
-
-      setTokenPayload(jwt.decode(data.login.token) as TokenPayloadType);
-      setToken(data.login.token);
-    },
-  }) as AuthResponseType;
+  });
 
   const [registerUser] = useMutation(REGISTER, {
     onError: (error) => {
@@ -97,12 +76,53 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     },
   }) as RegisterResponseType;
 
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token") ?? "";
+    const decodedToken: TokenPayloadType | null = token
+      ? (jwt.decode(storedToken) as TokenPayloadType)
+      : null;
+
+    const timeInMilisecs = new Date().getTime();
+    const expirationTimeInMilisecs = (decodedToken?.exp ?? 0) * 1000;
+
+    if (expirationTimeInMilisecs > timeInMilisecs) {
+      setTokenPayload(decodedToken!);
+      setToken(storedToken);
+    } else {
+      localStorage.removeItem("token");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setLoginError("");
+      localStorage.setItem("token", data.login.token);
+      handleModal(false);
+
+      setTokenPayload(jwt.decode(data.login.token) as TokenPayloadType);
+      setToken(data.login.token);
+    }
+  }, [data]);
+
+  const handleLogin = (
+    email: string | undefined,
+    password: string | undefined
+  ) => {
+    getToken({ variables: { email: email || "", password: password || "" } });
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     setTokenPayload({ email: "", id: 0, exp: 0, iat: 0 });
     setToken("");
-    console.log(tokenPayload);
+
+    getToken();
   };
+
+  useEffect(() => {
+    console.log(token);
+    console.log(tokenPayload);
+  }, [token, tokenPayload]);
 
   const handleModal = (value: boolean) => {
     setOpenModal(value);
@@ -113,9 +133,8 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     handleLogout,
     openModal,
     handleModal,
-    getToken: (email, password) => {
-      getToken({ variables: { email: email || "", password: password || "" } });
-    },
+
+    handleLogin,
     userInfo: tokenPayload,
     registerUser: (email, username, password) => {
       registerUser({ variables: { email, username, password } });

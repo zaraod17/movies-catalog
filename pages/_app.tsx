@@ -3,6 +3,8 @@ import type { AppProps } from "next/app";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { useRouter } from "next/router";
 
+import { AuthContextProvider } from "@/contexts/AuthContext";
+
 import MainLayout from "@/layouts/MainLayout";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -15,9 +17,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ApolloProvider client={client}>
-      <MainLayout>
-        <Component {...pageProps} />
-      </MainLayout>
+      <AuthContextProvider>
+        <MainLayout>
+          <Component {...pageProps} />
+        </MainLayout>
+      </AuthContextProvider>
     </ApolloProvider>
   );
 }

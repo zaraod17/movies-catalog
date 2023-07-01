@@ -1,10 +1,7 @@
 import { useRef, useContext } from "react";
-
 import { TextField, Button, Typography } from "@mui/material";
-
 import PersonIcon from "@mui/icons-material/Person";
 import PasswordIcon from "@mui/icons-material/Password";
-
 import { StyledFormBox, StyledInputWrapper } from "../AuthModal.styled";
 import { AuthContext } from "@/contexts/AuthContext";
 
@@ -12,25 +9,28 @@ const AuthModalForm: React.FC<{ mode: string }> = ({ mode }) => {
   const email = useRef<HTMLInputElement>(null);
   const username = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
+  const form = useRef<HTMLFormElement>(null);
 
-  const { getToken, loginError, registerUser } = useContext(AuthContext);
+  const { handleLogin, loginError, registerUser } = useContext(AuthContext);
 
   const isLogin = mode === "login";
 
   const handleAuthForm = () => {
     if (mode === "login") {
-      getToken(email.current?.value, password.current?.value);
+      handleLogin(email.current?.value, password.current?.value);
+      form.current?.reset();
     } else if (mode === "signup") {
       registerUser(
         email.current?.value,
         username.current?.value,
         password.current?.value
       );
+      form.current?.reset();
     }
   };
 
   return (
-    <StyledFormBox component="form">
+    <StyledFormBox ref={form} component="form">
       <StyledInputWrapper>
         <PersonIcon />
         <TextField
