@@ -52,10 +52,20 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const [loginError, setLoginError] = useState<string>("");
   const [token, setToken] = useState<string>("");
 
-  const [getToken, { data,  }] = useLazyQuery(LOGIN, {
+  const [getToken, { reset: loginStateReset }] = useMutation(LOGIN, {
     fetchPolicy: "no-cache",
     onError: (error) => {
       setLoginError(error.message);
+    },
+    onCompleted: (data) => {
+      if (data.login.token) {
+        setLoginError("");
+        localStorage.setItem("token", data.login.token);
+        handleModal(false);
+
+        setTokenPayload(jwt.decode(data.login.token) as TokenPayloadType);
+        setToken(data.login.token);
+      }
     },
   });
 
@@ -78,7 +88,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token") ?? "";
-    const decodedToken: TokenPayloadType | null = token
+    const decodedToken: TokenPayloadType | null = storedToken
       ? (jwt.decode(storedToken) as TokenPayloadType)
       : null;
 
@@ -93,17 +103,6 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, []);
 
-  useEffect(() => {
-    if (data) {
-      setLoginError("");
-      localStorage.setItem("token", data.login.token);
-      handleModal(false);
-
-      setTokenPayload(jwt.decode(data.login.token) as TokenPayloadType);
-      setToken(data.login.token);
-    }
-  }, [data]);
-
   const handleLogin = (
     email: string | undefined,
     password: string | undefined
@@ -116,13 +115,8 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     setTokenPayload({ email: "", id: 0, exp: 0, iat: 0 });
     setToken("");
 
-    getToken();
+    loginStateReset();
   };
-
-  useEffect(() => {
-    console.log(token);
-    console.log(tokenPayload);
-  }, [token, tokenPayload]);
 
   const handleModal = (value: boolean) => {
     setOpenModal(value);

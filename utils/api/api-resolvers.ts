@@ -122,34 +122,6 @@ export const resolvers = {
       return userList;
     },
 
-    login: async (parent: any, args: User, contextValue: any, info: any) => {
-      const { email, password } = args;
-
-      const user = jsonData.users.find((user) => user.email === email);
-
-      if (!user) {
-        throw new CustomError("User not found", {
-          code: "UNAUTHENTICATED",
-          http: { status: 401 },
-        });
-      }
-
-      // const hashedPassword = await hashPassword(password);
-
-      const isMatch = password === user.password;
-
-      if (!isMatch) {
-        throw new CustomError("Wrong password", {
-          code: "UNAUTHENTICATED",
-          http: { status: 401 },
-        });
-      }
-
-      const token = generateToken({ id: user.id, email: user.email });
-
-      return { token: token ?? "" };
-    },
-
     loggedUser: (
       parent: any,
       args: { email: string },
@@ -260,6 +232,34 @@ export const resolvers = {
       });
 
       return { token: generatedToken ?? "" };
+    },
+
+    login: async (parent: any, args: User, contextValue: any, info: any) => {
+      const { email, password } = args;
+
+      const user = jsonData.users.find((user) => user.email === email);
+
+      if (!user) {
+        throw new CustomError("User not found", {
+          code: "UNAUTHENTICATED",
+          http: { status: 401 },
+        });
+      }
+
+      // const hashedPassword = await hashPassword(password);
+
+      const isMatch = password === user.password;
+
+      if (!isMatch) {
+        throw new CustomError("Wrong password", {
+          code: "UNAUTHENTICATED",
+          http: { status: 401 },
+        });
+      }
+
+      const token = generateToken({ id: user.id, email: user.email });
+
+      return { token: token ?? "" };
     },
   },
 };
