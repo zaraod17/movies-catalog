@@ -67,10 +67,30 @@ export const USER_INFO = gql`
       email
       username
       favorites {
+        id
         title
+        imgUrl
+        productionYear
+        sumOfRatings
+        numberOfRatings
+        description
+        trailerUrl
+        actors
+        categories
+        views
       }
       myList {
+        id
         title
+        imgUrl
+        productionYear
+        sumOfRatings
+        numberOfRatings
+        description
+        trailerUrl
+        actors
+        categories
+        views
       }
     }
   }
