@@ -1,4 +1,5 @@
 import React from "react";
+import { ApolloError } from "apollo-server-core";
 
 import MoviesList from "@/components/MoviesList/MoviesList";
 import UserInfo from "./UserInfo/UserInfo";
@@ -7,17 +8,24 @@ import { useContext } from "react";
 import { useQuery } from "@apollo/client";
 import { CircularProgress, Typography } from "@mui/material";
 
-
 import { USER_INFO } from "@/utils/api/api-client-queries";
 import { AuthContext } from "@/contexts/AuthContext";
 
 import { StyledUserDetailsWrapper } from "./UserDetails.styled";
+import { LoggedUserInfo } from "./UserDetails.types";
 
 const UserDetails: React.FC = () => {
-
   const { token, userInfo } = useContext(AuthContext);
 
-  const { loading, error, data } = useQuery(USER_INFO, {
+  const {
+    loading,
+    error,
+    data,
+  }: {
+    loading: boolean;
+    error?: any;
+    data?: LoggedUserInfo;
+  } = useQuery(USER_INFO, {
     context: {
       headers: {
         authorization: token,
@@ -25,8 +33,8 @@ const UserDetails: React.FC = () => {
     },
     variables: { email: userInfo.email },
     onCompleted: (data) => {
-      console.log(data)
-    }
+      console.log(data);
+    },
   });
 
   if (loading) {
@@ -39,7 +47,14 @@ const UserDetails: React.FC = () => {
   return (
     <StyledUserDetailsWrapper>
       <UserInfo />
-      {/* <MoviesList listTitle="User favorite movies" /> */}
+      <MoviesList
+        moviesList={data?.loggedUser.favorites}
+        listTitle="User favorite movies"
+      />
+       <MoviesList
+        moviesList={data?.loggedUser.favorites}
+        listTitle="User list movies"
+      />
     </StyledUserDetailsWrapper>
   );
 };

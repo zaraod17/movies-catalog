@@ -19,3 +19,7 @@ interface LoggedUser {
   favorites: Movie[];
   myList: Movie[];
 }
+
+export type LoggedUserInfo = {
+  loggedUser: LoggedUser;
+};

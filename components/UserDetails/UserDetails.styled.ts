@@ -7,5 +7,6 @@ export const StyledUserDetailsWrapper = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     display: "flex",
     flexDirection: "column",
+    alignItems: 'center'
   },
 }));

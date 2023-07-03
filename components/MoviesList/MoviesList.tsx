@@ -6,9 +6,12 @@ import MoviesListElement from "./MoviesListElement/MoviesListElement";
 
 import { ListTitleType } from "@/components/MainPageLists/MainPageList.types";
 import { GET_MOVIES_LIST } from "@/utils/api/api-client-queries";
-import { MovieDataType } from "./MoviesList.types";
+import { MovieDataType, MoviesListType } from "./MoviesList.types";
 
-const MoviesList: React.FC<{ listTitle: ListTitleType }> = ({ listTitle }) => {
+const MoviesList: React.FC<{
+  listTitle: ListTitleType;
+  moviesList: MoviesListType | undefined;
+}> = ({ listTitle, moviesList }) => {
   const {
     loading,
     error,
@@ -20,6 +23,8 @@ const MoviesList: React.FC<{ listTitle: ListTitleType }> = ({ listTitle }) => {
     }
   );
 
+  const listOfMovies = moviesList ? moviesList : data?.moviesList;
+
   if (loading) {
     return <CircularProgress />;
   }
@@ -30,7 +35,7 @@ const MoviesList: React.FC<{ listTitle: ListTitleType }> = ({ listTitle }) => {
         {listTitle}
       </Typography>
       <List>
-        {data?.moviesList.map((movie) => (
+        {listOfMovies?.map((movie) => (
           <StyledLink key={movie.id} href={`/movie-details/${movie.id}`}>
             <MoviesListElement {...movie} />
           </StyledLink>
