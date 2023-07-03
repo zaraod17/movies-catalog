@@ -46,12 +46,15 @@ const UserDetails: React.FC = () => {
   }
   return (
     <StyledUserDetailsWrapper>
-      <UserInfo />
+      <UserInfo
+        email={data?.loggedUser.email}
+        username={data?.loggedUser.username}
+      />
       <MoviesList
         moviesList={data?.loggedUser.favorites}
         listTitle="User favorite movies"
       />
-       <MoviesList
+      <MoviesList
         moviesList={data?.loggedUser.favorites}
         listTitle="User list movies"
       />

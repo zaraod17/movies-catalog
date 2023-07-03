@@ -1,18 +1,19 @@
 import { Avatar, Typography } from "@mui/material";
 
 import { StyledUserInfo } from "./UserInfo.styled";
+import { UserInfoProps } from "./UserInfo.types";
 
-const UserInfo: React.FC = () => {
+const UserInfo: React.FC<UserInfoProps> = ({ email, username }) => {
   return (
     <StyledUserInfo>
       <Avatar />
       <Typography variant="h6" component="div" color="initial">
-        Username
+        {username}
       </Typography>
       <Typography variant="subtitle1" component="div" color="initial">
-        email@expample.com
+        {email}
       </Typography>
-      <Typography variant="subtitle2" component="div">
+      <Typography variant="h6" component="div">
         About me
       </Typography>
       <Typography variant="body2" color="initial">
