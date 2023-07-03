@@ -4,7 +4,7 @@ import Link from "next/link";
 import { IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
-import { StyledMenu } from "../NavBar.styled";
+import { StyledMenu, StyledLink } from "../NavBar.styled";
 
 const pages: { title: string; page: string }[] = [
   { title: "MoviesCatalog", page: "/" },
@@ -47,11 +47,11 @@ const MenuDropdown: React.FC = () => {
         onClose={closeNavMenu}
       >
         {pages.map((page) => (
-          <MenuItem key={page.title} onClick={closeNavMenu}>
-            <Link href={page.page}>
+          <StyledLink key={page.title} href={page.page}>
+            <MenuItem onClick={closeNavMenu}>
               <Typography textAlign="center">{page.title}</Typography>
-            </Link>
-          </MenuItem>
+            </MenuItem>
+          </StyledLink>
         ))}
       </Menu>
     </StyledMenu>
