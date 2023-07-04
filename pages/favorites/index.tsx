@@ -5,7 +5,6 @@ import { CircularProgress } from "@mui/material";
 
 import MoviesGrid from "@/components/MoviesGrid/MoviesGrid";
 
-import { DUMMY_MOVIES } from "@/data/dummy-data";
 import { AuthContext } from "@/contexts/AuthContext";
 import { USER_FAVORITE_MOVIES } from "@/utils/api/api-client-queries";
 
