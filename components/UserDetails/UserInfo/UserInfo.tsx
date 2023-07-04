@@ -1,4 +1,4 @@
-import { Avatar, Typography } from "@mui/material";
+import { Avatar, Typography, Button } from "@mui/material";
 
 import { StyledUserInfo } from "./UserInfo.styled";
 import { UserInfoProps } from "./UserInfo.types";
@@ -22,6 +22,7 @@ const UserInfo: React.FC<UserInfoProps> = ({ email, username }) => {
         sunt recusandae dolorem? Iure saepe quaerat nesciunt consectetur tempore
         ullam autem!
       </Typography>
+      <Button>Change Password</Button> {/* Implement password changeing */}
     </StyledUserInfo>
   );
 };

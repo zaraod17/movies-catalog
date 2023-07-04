@@ -95,3 +95,43 @@ export const USER_INFO = gql`
     }
   }
 `;
+
+export const USER_FAVORITE_MOVIES = gql`
+  query Query($email: String!) {
+    loggedUser(email: $email) {
+      favorites {
+        id
+        title
+        imgUrl
+        productionYear
+        sumOfRatings
+        numberOfRatings
+        description
+        trailerUrl
+        actors
+        categories
+        views
+      }
+    }
+  }
+`;
+
+export const USER_LIST_MOVIES = gql`
+   query Query($email: String!) {
+    loggedUser(email: $email) {
+      myList {
+        id
+        title
+        imgUrl
+        productionYear
+        sumOfRatings
+        numberOfRatings
+        description
+        trailerUrl
+        actors
+        categories
+        views
+      }
+    }
+  }
+`;

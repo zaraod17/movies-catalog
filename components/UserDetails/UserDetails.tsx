@@ -1,5 +1,4 @@
 import React from "react";
-import { ApolloError } from "apollo-server-core";
 
 import MoviesList from "@/components/MoviesList/MoviesList";
 import UserInfo from "./UserInfo/UserInfo";
@@ -32,9 +31,6 @@ const UserDetails: React.FC = () => {
       },
     },
     variables: { email: userInfo.email },
-    onCompleted: (data) => {
-      console.log(data);
-    },
   });
 
   if (loading) {
