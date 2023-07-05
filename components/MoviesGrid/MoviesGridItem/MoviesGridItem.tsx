@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { Paper, IconButton, Tooltip } from "@mui/material";
-import { PlayArrow, Add, Info } from "@mui/icons-material";
+import { PlayArrow, Clear } from "@mui/icons-material";
 
 import {
   StyledMoviesGridItem,
@@ -25,14 +25,9 @@ const MoviesGridItem: React.FC<MoviesGridItemsProps> = ({
                 <PlayArrow />
               </IconButton>
             </Tooltip>
-            <Tooltip title="Add">
+            <Tooltip title="Remove from the list">
               <IconButton>
-                <Add />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Info">
-              <IconButton>
-                <Info />
+                <Clear />
               </IconButton>
             </Tooltip>
           </StyledGridItemActions>
