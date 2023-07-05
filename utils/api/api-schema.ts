@@ -13,6 +13,12 @@ export const typeDefs = gql`
   type Mutation {
     register(email: String!, username: String!, password: String!): AuthPayload!
     login(email: String!, password: String!): AuthPayload!
+    addFavoriteMovie(id: Int!, email: String!): MovieId!
+    addMovieToUserList(id: Int!, email: String!): MovieId!
+  }
+
+  type MovieId {
+    movieId: Int
   }
 
   type User {

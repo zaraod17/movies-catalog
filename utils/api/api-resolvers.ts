@@ -261,5 +261,47 @@ export const resolvers = {
 
       return { token: token ?? "" };
     },
+
+    addFavoriteMovie: (
+      parent: any,
+      args: { id: number | string; email: string },
+      contextValue: any,
+      info: any
+    ) => {
+      const { id, email } = args;
+      const data = { ...jsonData };
+
+      const selectedUser = jsonData.users.find((user) => user.email === email);
+      const userIndex = data.users.findIndex((user) => user.email === email);
+
+      selectedUser?.favorites.push({ movieId: id });
+
+      data.users.splice(userIndex, 1, selectedUser!);
+
+      fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+
+      return { movieId: id };
+    },
+
+    addMovieToUserList: (
+      parent: any,
+      args: { id: number | string; email: string },
+      contextValue: any,
+      info: any
+    ) => {
+      const { id, email } = args;
+      const data = { ...jsonData };
+
+      const selectedUser = jsonData.users.find((user) => user.email === email);
+      const userIndex = data.users.findIndex((user) => user.email === email);
+
+      selectedUser?.myList.push({ movieId: id });
+
+      data.users.splice(userIndex, 1, selectedUser!);
+
+      fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+
+      return { movieId: id };
+    },
   },
 };
