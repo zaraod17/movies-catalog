@@ -274,6 +274,17 @@ export const resolvers = {
       const selectedUser = jsonData.users.find((user) => user.email === email);
       const userIndex = data.users.findIndex((user) => user.email === email);
 
+      const isIdInList = selectedUser?.favorites.find(
+        (fav) => fav.movieId === id
+      );
+
+      if (!!isIdInList) {
+        throw new CustomError("Movie is already in list", {
+          code: "BAD_REQUEST",
+          http: { status: 400 },
+        });
+      }
+
       selectedUser?.favorites.push({ movieId: id });
 
       data.users.splice(userIndex, 1, selectedUser!);
@@ -294,6 +305,17 @@ export const resolvers = {
 
       const selectedUser = jsonData.users.find((user) => user.email === email);
       const userIndex = data.users.findIndex((user) => user.email === email);
+
+      const isIdInList = selectedUser?.myList.find(
+        (fav) => fav.movieId === id
+      );
+
+      if (!!isIdInList) {
+        throw new CustomError("Movie is already in list", {
+          code: "BAD_REQUEST",
+          http: { status: 400 },
+        });
+      }
 
       selectedUser?.myList.push({ movieId: id });
 
