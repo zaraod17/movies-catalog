@@ -659,9 +659,6 @@
           "movieId": 3
         },
         {
-          "movieId": 4
-        },
-        {
           "movieId": 30
         }
       ],
@@ -680,9 +677,6 @@
         },
         {
           "movieId": 10
-        },
-        {
-          "movieId": 15
         }
       ]
     },

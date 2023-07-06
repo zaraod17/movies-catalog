@@ -1,12 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-import {
-  verifyToken,
-  comparePassword,
-  generateToken,
-  hashPassword,
-} from "../auth";
+import { generateToken } from "../auth";
 
 import { User } from "../auth-types";
 import CustomError from "@/models/custom-error";
@@ -246,8 +241,6 @@ export const resolvers = {
         });
       }
 
-      // const hashedPassword = await hashPassword(password);
-
       const isMatch = password === user.password;
 
       if (!isMatch) {
@@ -306,9 +299,7 @@ export const resolvers = {
       const selectedUser = jsonData.users.find((user) => user.email === email);
       const userIndex = data.users.findIndex((user) => user.email === email);
 
-      const isIdInList = selectedUser?.myList.find(
-        (fav) => fav.movieId === id
-      );
+      const isIdInList = selectedUser?.myList.find((fav) => fav.movieId === id);
 
       if (!!isIdInList) {
         throw new CustomError("Movie is already in list", {
@@ -318,6 +309,56 @@ export const resolvers = {
       }
 
       selectedUser?.myList.push({ movieId: id });
+
+      data.users.splice(userIndex, 1, selectedUser!);
+
+      fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+
+      return { movieId: id };
+    },
+
+    removeFromFavorites: (
+      parent: any,
+      args: { id: number | string; email: string },
+      contextValue: any,
+      info: any
+    ) => {
+      const { email, id } = args;
+      const data = { ...jsonData };
+
+      const selectedUser = jsonData.users.find((user) => user.email === email);
+      const userIndex = data.users.findIndex((user) => user.email === email);
+
+      const movieIdIndex = selectedUser?.favorites.findIndex(
+        (movId) => movId.movieId === id
+      );
+
+      selectedUser?.favorites.splice(movieIdIndex!, 1);
+
+      data.users.splice(userIndex, 1, selectedUser!);
+
+      fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+
+      return { movieId: id };
+    },
+
+    removeFromUserList: (
+      parent: any,
+      args: { id: number | string; email: string },
+      contextValue: any,
+      info: any
+    ) => {
+      const { email, id } = args;
+      const data = { ...jsonData };
+
+      const selectedUser = jsonData.users.find((user) => user.email === email);
+      const userIndex = data.users.findIndex((user) => user.email === email);
+
+      const movieIdIndex = selectedUser?.myList.findIndex(
+        (movId) => movId.movieId === id
+      );
+
+      selectedUser?.myList.splice(movieIdIndex!, 1);
 
       data.users.splice(userIndex, 1, selectedUser!);
 

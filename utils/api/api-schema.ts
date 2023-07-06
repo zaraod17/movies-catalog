@@ -15,6 +15,8 @@ export const typeDefs = gql`
     login(email: String!, password: String!): AuthPayload!
     addFavoriteMovie(id: Int!, email: String!): MovieId!
     addMovieToUserList(id: Int!, email: String!): MovieId!
+    removeFromFavorites(id: Int!, email: String): MovieId!
+    removeFromUserList(id: Int!, email: String!): MovieId!
   }
 
   type MovieId {
