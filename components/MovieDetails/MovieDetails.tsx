@@ -1,4 +1,8 @@
+import { useContext } from "react";
 import { ApolloError, useQuery } from "@apollo/client";
+
+import { IconButton, Tooltip } from "@mui/material";
+import { Add, Favorite, FavoriteBorder } from "@mui/icons-material";
 
 import {
   CircularProgress,
@@ -15,12 +19,16 @@ import {
   ActorsList,
   MovieTrailerWrapper,
   StyledFrame,
+  ActionsWrapper,
 } from "./MovieDetails.styled";
 
 import { GET_SINGLE_MOVIE } from "@/utils/api/api-client-queries";
 import { MovieType } from "./MovieDetails.types";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
+  const { token } = useContext(AuthContext);
+
   const {
     loading,
     error,
@@ -65,6 +73,21 @@ const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
             >
               {data?.singleMovie.description}
             </Typography>
+
+            {token && (
+              <ActionsWrapper>
+                <Tooltip title="Add to myList">
+                  <IconButton>
+                    <Add />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title="Add to favorites">
+                  <IconButton>
+                    <Favorite />
+                  </IconButton>
+                </Tooltip>
+              </ActionsWrapper>
+            )}
           </Box>
         </StyledWrapper>
         <StyledWrapper className="actors-list">

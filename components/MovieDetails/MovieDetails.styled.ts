@@ -124,3 +124,8 @@ export const StyledFrame = styled("iframe")(({ theme }) => ({
     minHeight: "300px",
   },
 }));
+
+export const ActionsWrapper = styled(Box)(({ theme }) => ({
+  display: "flex !important",
+  flexDirection: 'row !important'
+}));
