@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ApolloError, useQuery } from "@apollo/client";
+import { ApolloError, useQuery, useMutation } from "@apollo/client";
 
 import { IconButton, Tooltip } from "@mui/material";
 import { Add, Favorite, FavoriteBorder } from "@mui/icons-material";
@@ -26,8 +26,27 @@ import { GET_SINGLE_MOVIE } from "@/utils/api/api-client-queries";
 import { MovieType } from "./MovieDetails.types";
 import { AuthContext } from "@/contexts/AuthContext";
 
+import {
+  ADD_TO_FAVORITES,
+  ADD_TO_USER_LIST,
+} from "@/utils/api/api-client-queries";
+
 const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
-  const { token } = useContext(AuthContext);
+  const { token, userInfo } = useContext(AuthContext);
+
+  const [
+    addFavoriteMovie,
+    { loading: addFavMovieLoading, data: favMovieData },
+  ] = useMutation(ADD_TO_FAVORITES, {
+    variables: { id: userInfo.id, email: userInfo.email },
+  });
+
+  const [
+    addToUserList,
+    { loading: addToUserListLoading, data: addToUserListData },
+  ] = useMutation(ADD_TO_USER_LIST, {
+    variables: { id: userInfo.id, email: userInfo.email },
+  });
 
   const {
     loading,

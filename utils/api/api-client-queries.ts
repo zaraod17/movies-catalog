@@ -117,7 +117,7 @@ export const USER_FAVORITE_MOVIES = gql`
 `;
 
 export const USER_LIST_MOVIES = gql`
-   query Query($email: String!) {
+  query Query($email: String!) {
     loggedUser(email: $email) {
       myList {
         id
@@ -132,6 +132,22 @@ export const USER_LIST_MOVIES = gql`
         categories
         views
       }
+    }
+  }
+`;
+
+export const ADD_TO_FAVORITES = gql`
+  mutation Mutation($id: Int!, $email: String!) {
+    addFavoriteMovie(id: $id, email: $email) {
+      movieId
+    }
+  }
+`;
+
+export const ADD_TO_USER_LIST = gql`
+  mutation Mutation($id: Int!, $email: String!) {
+    addMovieToUserList(id: $id, email: $email) {
+      movieId
     }
   }
 `;
