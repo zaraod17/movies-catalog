@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { ApolloError, useQuery, useMutation } from "@apollo/client";
 
-import { IconButton, Tooltip } from "@mui/material";
 import { Add, Favorite, FavoriteBorder } from "@mui/icons-material";
 
 import {
@@ -10,7 +9,11 @@ import {
   Box,
   ListSubheader,
   ListItem,
+  Tooltip,
 } from "@mui/material";
+
+import IconButton from "@mui/material/IconButton";
+
 import {
   StyledWrapper,
   StyledImg,
@@ -96,12 +99,12 @@ const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
             {token && (
               <ActionsWrapper>
                 <Tooltip title="Add to myList">
-                  <IconButton>
+                  <IconButton onClick={() => addFavoriteMovie()}>
                     <Add />
                   </IconButton>
                 </Tooltip>
                 <Tooltip title="Add to favorites">
-                  <IconButton>
+                  <IconButton onClick={() => addToUserList()}>
                     <Favorite />
                   </IconButton>
                 </Tooltip>
