@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ApolloError, useQuery, useMutation } from "@apollo/client";
 
-import { Add, Favorite, FavoriteBorder } from "@mui/icons-material";
+import { Add, Favorite } from "@mui/icons-material";
 
 import {
   CircularProgress,
@@ -39,14 +39,22 @@ const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
 
   const [
     addFavoriteMovie,
-    { loading: addFavMovieLoading, data: favMovieData },
+    {
+      loading: addFavMovieLoading,
+      error: addFavMovieError,
+      data: favMovieData,
+    },
   ] = useMutation(ADD_TO_FAVORITES, {
     variables: { id: userInfo.id, email: userInfo.email },
   });
 
   const [
     addToUserList,
-    { loading: addToUserListLoading, data: addToUserListData },
+    {
+      loading: addToUserListLoading,
+      error: addToUserListError,
+      data: addToUserListData,
+    },
   ] = useMutation(ADD_TO_USER_LIST, {
     variables: { id: userInfo.id, email: userInfo.email },
   });
