@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 
 import IconButton from "@mui/material/IconButton";
+import InfoSnackbar from "./MovieDetailsActions/InfoSnackbar";
 
 import {
   StyledWrapper,
@@ -43,9 +44,13 @@ const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
       loading: addFavMovieLoading,
       error: addFavMovieError,
       data: favMovieData,
+      reset,
     },
   ] = useMutation(ADD_TO_FAVORITES, {
     variables: { id: userInfo.id, email: userInfo.email },
+    onError: (error) => {
+      console.log(error.message);
+    },
   });
 
   const [
@@ -54,9 +59,13 @@ const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
       loading: addToUserListLoading,
       error: addToUserListError,
       data: addToUserListData,
+      reset: addToUserListReset,
     },
   ] = useMutation(ADD_TO_USER_LIST, {
     variables: { id: userInfo.id, email: userInfo.email },
+    onError: (error) => {
+      console.log(error.message);
+    },
   });
 
   const {
@@ -137,6 +146,14 @@ const MovieDetails: React.FC<{ id: string | number }> = ({ id }) => {
       <MovieTrailerWrapper>
         <StyledFrame src={data?.singleMovie.trailerUrl}></StyledFrame>
       </MovieTrailerWrapper>
+      <InfoSnackbar
+        errorMessage={
+          addFavMovieError
+            ? addFavMovieError?.message
+            : addToUserListError?.message
+        }
+        clearState={addFavMovieError ? reset : addToUserListReset}
+      />
     </>
   );
 };
