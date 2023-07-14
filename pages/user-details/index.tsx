@@ -1,9 +1,8 @@
 import { useContext, useEffect } from "react";
-import {  useRouter } from "next/router";
-
-import UserDetails from "@/components/UserDetails/UserDetails";
+import { useRouter } from "next/router";
 
 import { AuthContext } from "@/contexts/AuthContext";
+import UserDetails from "@/components/UserDetails/UserDetails";
 
 const UserDetailsPage: React.FC = () => {
   const router = useRouter();
@@ -11,9 +10,9 @@ const UserDetailsPage: React.FC = () => {
 
   useEffect(() => {
     if (!(token && userInfo.email)) {
-      router.replace('/');
+      router.replace("/");
     }
-  }, []);
+  }, [router, token, userInfo.email]);
 
   return (
     <>

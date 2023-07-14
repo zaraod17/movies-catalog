@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useQuery } from "@apollo/client";
+
+import { useRouter } from "next/router";
 
 import { CircularProgress } from "@mui/material";
 import MoviesGrid from "@/components/MoviesGrid/MoviesGrid";
-
-import { DUMMY_MOVIES } from "@/data/dummy-data";
 
 import { AuthContext } from "@/contexts/AuthContext";
 import { USER_LIST_MOVIES } from "@/utils/api/api-client-queries";
@@ -43,6 +43,14 @@ const WatchListPage: React.FC = () => {
       variables: { email: userInfo.email },
     }
   );
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!(token && userInfo.email)) {
+      router.replace("/");
+    }
+  }, [router, token, userInfo.email]);
 
   if (loading) {
     return <CircularProgress />;

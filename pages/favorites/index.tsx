@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { CircularProgress } from "@mui/material";
 
@@ -7,6 +7,8 @@ import MoviesGrid from "@/components/MoviesGrid/MoviesGrid";
 
 import { AuthContext } from "@/contexts/AuthContext";
 import { USER_FAVORITE_MOVIES } from "@/utils/api/api-client-queries";
+
+import { useRouter } from "next/router";
 
 interface FavoriteMovies {
   loggedUser: {
@@ -26,6 +28,8 @@ interface FavoriteMovies {
 }
 
 const FavoritesPage: React.FC = () => {
+  const router = useRouter();
+
   const { token, userInfo } = useContext(AuthContext);
   const {
     loading,
@@ -45,6 +49,12 @@ const FavoritesPage: React.FC = () => {
       },
     }
   );
+
+  useEffect(() => {
+    if (!(token && userInfo.email)) {
+      router.replace("/");
+    }
+  }, [router, token, userInfo.email]);
 
   if (loading) {
     return <CircularProgress />;
