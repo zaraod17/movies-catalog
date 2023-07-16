@@ -8,6 +8,7 @@ export const typeDefs = gql`
     userFavoriteMovies(userEmail: String): [Movie]
     userMoviesList(userEmail: String): [Movie]
     loggedUser(email: String!): User!
+    searchedMovie(title: String!): Movie!
   }
 
   type Mutation {

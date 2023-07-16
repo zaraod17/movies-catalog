@@ -156,4 +156,24 @@ export const apiResovlerQueries = {
 
     return newLoggedUser;
   },
+
+  searchedMovie: (
+    parent: any,
+    args: { title: string },
+    contextValue: any,
+    info: any
+  ) => {
+    const selectedMovie = jsonData.movies.find(
+      (movie) => movie.title === args.title
+    );
+
+    if (!selectedMovie) {
+      throw new CustomError("Movie not found", {
+        code: "NOT_FOUND",
+        http: { status: 404 },
+      });
+    }
+
+    return selectedMovie;
+  },
 };
