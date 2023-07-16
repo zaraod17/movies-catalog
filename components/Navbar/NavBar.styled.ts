@@ -63,3 +63,13 @@ export const StyledMenu = styled(Box)(({ theme }) => ({
     display: "none",
   },
 }));
+
+export const StyledSearchButton = styled(Button)(({theme}) => ({
+  textTransform: 'capitalize',
+  color: 'white',
+  borderRadius: '2rem',
+
+  "&:hover": {
+    backgroundColor: '#444242'
+  }
+}))

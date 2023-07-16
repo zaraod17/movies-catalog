@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
 import {
   StyledAppBar,
   StyledToolbar,
@@ -8,6 +8,7 @@ import {
   StyledLink,
   StyledLinks,
   InputWrapper,
+  StyledSearchButton,
 } from "./NavBar.styled";
 
 import { AuthContext } from "@/contexts/AuthContext";
@@ -46,15 +47,13 @@ const NavBar: React.FC = () => {
           </StyledLinks>
           <InputWrapper>
             <SearchField />
+            <StyledSearchButton>Search</StyledSearchButton>
           </InputWrapper>
           <AuthModal modalOpen={openModal} onModalClose={handleClose} />
           {userInfo.email ? (
             <UserDropdown />
           ) : (
-            <StyledButton
-              onClick={handleOpenModal}
-              data-cy="login"
-            >
+            <StyledButton onClick={handleOpenModal} data-cy="login">
               Login
             </StyledButton>
           )}
