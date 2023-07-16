@@ -17,6 +17,7 @@ import UserDropdown from "./UserDropdown/UserDropdown";
 import SearchField from "../SearchField/SearchField";
 import MenuDropdown from "./MenuDropdown/MenuDropdown";
 import AuthModal from "@/components/AuthModal/AuthModal";
+import { SearchContextProvider } from "@/contexts/SearchContext";
 
 const NavBar: React.FC = () => {
   const { openModal, handleModal, userInfo } = useContext(AuthContext);
@@ -30,7 +31,7 @@ const NavBar: React.FC = () => {
   };
 
   return (
-    <>
+    <SearchContextProvider>
       <StyledAppBar>
         <StyledToolbar>
           <MenuDropdown />
@@ -59,7 +60,7 @@ const NavBar: React.FC = () => {
           )}
         </StyledToolbar>
       </StyledAppBar>
-    </>
+    </SearchContextProvider>
   );
 };
 
