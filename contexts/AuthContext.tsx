@@ -127,7 +127,6 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     handleLogout,
     openModal,
     handleModal,
-
     handleLogin,
     userInfo: tokenPayload,
     registerUser: (email, username, password) => {
