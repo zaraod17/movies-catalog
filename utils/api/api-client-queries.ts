@@ -151,3 +151,21 @@ export const ADD_TO_USER_LIST = gql`
     }
   }
 `;
+
+export const GET_SEARCHED_MOVIES = gql`
+  query Query($title: String!) {
+    searchedMovie(title: $title) {
+      id
+      title
+      imgUrl
+      productionYear
+      sumOfRatings
+      numberOfRatings
+      description
+      trailerUrl
+      actors
+      categories
+      views
+    }
+  }
+`;

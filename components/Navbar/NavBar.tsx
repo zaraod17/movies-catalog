@@ -1,5 +1,7 @@
 import { useContext } from "react";
 
+import { useRouter } from "next/router";
+
 import { Typography, Box, Button } from "@mui/material";
 import {
   StyledAppBar,
@@ -20,6 +22,7 @@ import AuthModal from "@/components/AuthModal/AuthModal";
 import { SearchContextProvider } from "@/contexts/SearchContext";
 
 const NavBar: React.FC = () => {
+  const router = useRouter();
   const { openModal, handleModal, userInfo } = useContext(AuthContext);
 
   const handleOpenModal = () => {
@@ -48,7 +51,9 @@ const NavBar: React.FC = () => {
           </StyledLinks>
           <InputWrapper>
             <SearchField />
-            <StyledSearchButton>Search</StyledSearchButton>
+            <StyledSearchButton onClick={() => router.push("/search")}>
+              Search
+            </StyledSearchButton>
           </InputWrapper>
           <AuthModal modalOpen={openModal} onModalClose={handleClose} />
           {userInfo.email ? (
