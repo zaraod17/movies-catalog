@@ -163,17 +163,21 @@ export const apiResovlerQueries = {
     contextValue: any,
     info: any
   ) => {
-    const selectedMovie = jsonData.movies.find(
-      (movie) => movie.title === args.title
-    );
+    const selectedMovies = [];
 
-    if (!selectedMovie) {
+    for (const movie of jsonData.movies) {
+      if (movie.title.includes(args.title)) {
+        selectedMovies.push(movie);
+      }
+    }
+
+    if (!selectedMovies) {
       throw new CustomError("Movie not found", {
         code: "NOT_FOUND",
         http: { status: 404 },
       });
     }
 
-    return selectedMovie;
+    return selectedMovies;
   },
 };
