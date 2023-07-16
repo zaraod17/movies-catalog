@@ -20,6 +20,7 @@ const SearchField: React.FC = () => {
       <StyledInputBase
         onChange={(e) => {
           setSearchedTerm(e.target.value);
+          console.log(movieTitle)
         }}
         placeholder="Search movie"
         inputProps={{ "aria-label": "search" }}

@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { useQuery } from "@apollo/client";
 
+import { Typography, CircularProgress } from "@mui/material";
+
 import { GET_SEARCHED_MOVIES } from "@/utils/api/api-client-queries";
 
 import { MoviesListType } from "@/components/MoviesList/MoviesList.types";
@@ -28,7 +30,15 @@ const SearchPage: React.FC = () => {
     }
   );
 
-  return <>{/* <MoviesGrid /> */}Search Page</>;
+  if (loading) {
+    return <CircularProgress></CircularProgress>
+  }
+
+  if (error) {
+    return <Typography variant="caption">{error.message}</Typography>;
+  }
+
+  return <MoviesGrid items={data?.searchedMovie!} />;
 };
 
 export default SearchPage;

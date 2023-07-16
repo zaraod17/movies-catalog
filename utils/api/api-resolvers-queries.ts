@@ -171,7 +171,7 @@ export const apiResovlerQueries = {
       }
     }
 
-    if (!selectedMovies) {
+    if (!selectedMovies || !args.title) {
       throw new CustomError("Movie not found", {
         code: "NOT_FOUND",
         http: { status: 404 },
