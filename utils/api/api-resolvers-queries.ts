@@ -166,7 +166,7 @@ export const apiResovlerQueries = {
     const selectedMovies = [];
 
     for (const movie of jsonData.movies) {
-      if (movie.title.includes(args.title)) {
+      if (movie.title.toLowerCase().includes(args.title)) {
         selectedMovies.push(movie);
       }
     }

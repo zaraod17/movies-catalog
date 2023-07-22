@@ -54,7 +54,7 @@ const NavBar: React.FC = () => {
           <SearchField />
           <StyledSearchButton
             onClick={() => {
-              router.push("/search", { query: { search: movieTitle } });
+              router.push("/search");
               console.log(movieTitle);
             }}
           >
