@@ -16,7 +16,7 @@ const MainPageLists: React.FC = () => {
     <Grid container spacing={4} columns={21}>
       {listNames.map((list) => (
         <StyledGridItem key={list} item xs={21} md={10.5} xl={7}>
-          <MoviesList listTitle={list} />
+          <MoviesList listTitle={list} moviesList={undefined} />
         </StyledGridItem>
       ))}
     </Grid>
