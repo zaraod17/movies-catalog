@@ -125,7 +125,7 @@ export const StyledFrame = styled("iframe")(({ theme }) => ({
   },
 }));
 
-export const ActionsWrapper = styled(Box)(({ theme }) => ({
-  display: "flex !important",
-  flexDirection: 'row !important'
+export const ActionsWrapper = styled(Box)(() => ({
+  display: "flex",
+  flexDirection: 'row'
 }));
